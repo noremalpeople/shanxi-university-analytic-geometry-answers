@@ -1,0 +1,191 @@
+\section{习题 3.1：仿射与正交坐标变换}
+\chr{16}{134—136}{140—142}{302—304}
+\K{坐标变换的一条总公式：若新坐标系原点在旧系中的坐标为 $d$，新基向量在旧基下排成 $C=[e'_1\ e'_2\ e'_3]$，则点的坐标变换是 $X=d+CX'$，向量变换是 $v=Cv'$。}
+\begin{center}
+\begin{tikzpicture}[scale=.85,>=Stealth]
+\coordinate(O)at(0,0);\coordinate(T)at(2.5,1);\draw[->](-.5,0)--(5,0) node[right]{$x$};\draw[->](0,-.5)--(0,3.5) node[above]{$y$};
+\draw[->,very thick,accent](T)--++(2,.8) node[right]{$x'$};\draw[->,very thick,mint](T)--++(-.6,1.8) node[above]{$y'$};
+\draw[->,dashed,orange!80!black](O)--(T) node[midway,below]{$d$};\fill(O)circle(1.5pt)node[below left]{$O$};\fill(T)circle(1.5pt)node[below]{$O'$};
+\end{tikzpicture}
+\end{center}
+\readtip{\textbf{读图：}先沿旧系从 $O$ 走到 $O'$（平移 $d$），再沿新轴走 $x'e'_1+y'e'_2$；这就是 $X=d+CX'$。对于右手直角系，若 $C$ 是正交矩阵，则 $C^{-1}=C^\top$。}
+
+\Q{1}{两个四面体顶点坐标系之间的转换}
+\textbf{题意：}从 $[A;\overrightarrow{AB},\overrightarrow{AC},\overrightarrow{AD}]$ 换到 $[B;\overrightarrow{BC},\overrightarrow{BD},\overrightarrow{BA}]$。\hint{取 $A$ 为旧原点，四个点的旧坐标依次是 $(0,0,0),(1,0,0),(0,1,0),(0,0,1)$。}
+新原点 $B=(1,0,0)$，三个新基向量分别为 $(-1,1,0),(-1,0,1),(-1,0,0)$，所以
+\[
+\begin{pmatrix}x\\y\\z\end{pmatrix}=
+\begin{pmatrix}1\\0\\0\end{pmatrix}+
+\underbrace{\begin{pmatrix}-1&-1&-1\\1&0&0\\0&1&0\end{pmatrix}}_{C}
+\begin{pmatrix}x'\\y'\\z'\end{pmatrix}.
+\]
+即 $x=1-x'-y'-z',\;y=x',\;z=y'$。矩阵行列式非零，故变换合法。
+\ans{过渡矩阵 $C$ 及点的坐标公式如上，与原书核对一致。}
+
+\Q{2}{梯形的坐标系与分点变换}
+\textbf{题意：}$AB=2DC$，$O$ 为 $AB$ 中点；$I=[O;\overrightarrow{OC},\overrightarrow{OD}]$，$I'=[A;\overrightarrow{AB},\overrightarrow{AC}]$。\hint{先在 $I'$ 下写 $O,C,D$。}
+令 $A=(0,0),B=(1,0),C=(0,1)$（均为 $I'$ 的坐标）。由 $\overrightarrow{DC}=\overrightarrow{AB}/2$ 得 $D=(-1/2,1)$；$O=(1/2,0)$，于是新旧基关系
+\[
+\overrightarrow{OC}=(-1/2,1),\quad \overrightarrow{OD}=(-1,1),\quad
+\overrightarrow{AO}=(1/2,0).
+\]
+把旧系的一般点 $X=O+x\overrightarrow{OC}+y\overrightarrow{OD}$ 与 $I'$ 系 $X=A+x'\overrightarrow{AB}+y'\overrightarrow{AC}$ 比较，可得
+\[
+x'=\tfrac12-\tfrac12x-y,\qquad y'=x+y.
+\]
+反解为 $x=2x'+2y'-1,\ y=1-2x'-y'$。
+\ans{已同时给出 $I\to I'$ 与反变换；与书后公式一致。}
+
+\Q{3}{由三条中点线构造空间新坐标系}
+\textbf{题意：}四面体 $OABC$，$D,E,F$ 分别为 $AB,BC,CA$ 中点，旧基 $\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}$，新基 $\overrightarrow{OD},\overrightarrow{OE},\overrightarrow{OF}$。\hint{先将三个中点表达为旧坐标，再反解点坐标。}
+\subpart{(1) 坐标变换} $D=(1/2,1/2,0),\ E=(0,1/2,1/2),\ F=(1/2,0,1/2)$，故
+\[
+x=\tfrac{x'+z'}2,\quad y=\tfrac{x'+y'}2,\quad z=\tfrac{y'+z'}2.
+\]
+相加、相减可反解 $x'=x+y-z,\ y'=-x+y+z,\ z'=x-y+z$。
+\subpart{(2) 顶点与三条边} $A=(1,-1,1),\ B=(1,1,-1),\ C=(-1,1,1)$（新系）。因此 $AB:(x',y',z')=(1,-1,1)+t(0,2,-2)$；$BC:(1,1,-1)+t(-2,0,2)$；$CA:(-1,1,1)+t(2,-2,0)$。这些参数式避免了标准式中分母为零的歧义。
+\subpart{(3) 中点三角形的三条直线（用旧坐标）}
+\[
+DE:\ (\tfrac12,\tfrac12,0)+t(-1,0,1),\quad
+EF:\ (0,\tfrac12,\tfrac12)+t(1,-1,0),
+\]
+\[
+FD:\ (\tfrac12,0,\tfrac12)+t(0,1,-1).
+\]
+\ans{三问均已展开。原答案第 (3) 小问的线名重复；这里分别给 $DE$、$EF$、$FD$。}
+
+\Q{4}{只有坐标轴方向与原点互换资料时如何定标}
+\textbf{题意：}在旧系 $I$ 下，$O'=(1,5,2)$，三个新轴方向依次与 $(0,1,1),(1,0,1),(1,1,0)$ 平行；旧原点在新系为 $(-1,-1,2)$。\hint{把新基写成三个未知倍数，利用 $0=d+C(-1,-1,2)^\top$ 解系数。}
+设 $C=[k_1(0,1,1),k_2(1,0,1),k_3(1,1,0)]$，则
+\[
+\begin{cases}-k_2+2k_3=-1,\\-k_1+2k_3=-5,\\-k_1-k_2=-2.\end{cases}
+\Longrightarrow (k_1,k_2,k_3)=(3,-1,-1).
+\]
+\ans{$\displaystyle C=\begin{pmatrix}0&-1&-1\\3&0&-1\\3&-1&0\end{pmatrix}$。注意“平行”允许负倍数，不能预设同向。}
+
+\Q{5}{由新坐标平面与旧原点新坐标恢复三维变换}
+\textbf{已知：}$y'z':x+y+z-1=0$；$x'z':2x-y+3z+3=0$；$x'y':x+2y-2=0$；且旧原点在新系为 $(1,3,4)$。\hint{三平面的交点就是 $O'$；每一新轴由相应两平面求交。}
+联立三平面求得 $O'=(-2,2,1)$；各轴方向可选为 $u_1=(6,-3,-5),\ u_2=(2,-1,-1),\ u_3=(-4,1,3)$，让比例因子分别为 $1/2,1/2,1/4$ 的负号关系由 $0=O'+C(1,3,4)^\top$ 决定。解出
+\[
+\boxed{\begin{aligned}
+x&=3x'+y'-z'-2,\\
+y&=-\tfrac32x'-\tfrac12y'+\tfrac14z'+2,\\
+z&=-\tfrac52x'-\tfrac12y'+\tfrac34z'+1.
+\end{aligned}}
+\]
+\subpart{(2) 平面} 代入 $3x+2y+z+5=0$，逐项合并，得到 $14x'+6y'-7z'+16=0$。
+\subpart{(3) 直线} 令旧系的直线 $(x,y,z)=(2,0,-1)+t(3,-1,2)$，把两组坐标带入上述变换并解得 $X'=(-4t,4+13t,-2t)$，即
+\[\boxed{(x',y',z')=(0,4,0)+t(-4,13,-2).}\]
+\ans{三问与书后答案一致；第 (3) 问用参数式比三项相除更安全。}
+
+\Q{6}{已知新 $x'$ 轴及新 $y'$ 正半轴定向的正交变换}
+\textbf{条件：}$x'$ 轴为 $4x-3y+12=0$，$A=(1,-3)$ 在新 $y'$ 轴的正侧；两系均右手直角。\hint{新原点既在 $x'$ 轴上，也在过 $A$ 且垂直 $x'$ 轴的直线上。}
+由 $x'$ 轴法向 $(4,-3)$，过 $A$ 的新 $y'$ 轴沿 $(4,-3)$；两轴交于 $O'=(-3,0)$。正 $y'$ 单位向量取 $(4/5,-3/5)$，满足右手定向的正 $x'$ 为 $(-3/5,-4/5)$。
+\[
+\boxed{x=-\tfrac35x'+\tfrac45y'-3,\qquad y=-\tfrac45x'-\tfrac35y'.}
+\]
+将直线 $3x-2y+5=0$ 代入，逐项合并得 $x'-18y'+20=0$。
+\caution{书后把第 (2) 问印为 $5x\prime-18y\prime+20=0$，但直接代入正确的第 (1) 问变换应为 $x\prime-18y\prime+20=0$；可用新点 $(-20,0)$ 检验：它在正确直线上，对应旧点 $(9,16)$，也满足 $3x-2y+5=0$；但代入书后式得到 $-80\ne0$。}\ans{坐标变换式与书后一致；直线的正确系数为 $1$ 而非书后的 $5$。}
+
+\Q{7}{由旧原点的新坐标确定两直角系的相对位置}
+\textbf{条件：}$x'$ 轴为 $3x-4y+5=0$，旧原点在新系为 $(2,1)$，两系均右手。\hint{$x'$ 轴方向的单位向量取 $\pm(4,3)/5$，用 $O=O'+2e'_1+e'_2$ 决定符号。}
+解得 $e'_1=(-4/5,-3/5),e'_2=(3/5,-4/5)$，且 $O'=(1,2)$，于是
+\[
+\boxed{x=-\tfrac45x'+\tfrac35y'+1,\qquad y=-\tfrac35x'-\tfrac45y'+2.}
+\]
+令旧系 $x^2/4+y^2/9=1$，代入上式并清除分母，得
+\[\boxed{36x'^2+29y'^2-24x'y'-120x'-10y'-55=0.}\]
+\ans{两问与原书一致；新系的轴方向可由右手性以及旧原点的位置唯一锁定。}
+
+\Q{8}{由两点在两直角系中的坐标求刚性变换}
+\textbf{点对：}$A_I=(6,-5),A_{I'}=(1,-3)$；$B_I=(1,-4),B_{I'}=(0,2)$。\hint{等向量 $\overrightarrow{BA}$ 在两系下分别为 $(5,-1)$ 和 $(1,-5)$，用“保长 + 保方向”算旋转矩阵。}
+右手正交旋转矩阵设为 $C=\begin{psmallmatrix}c&-s\\s&c\end{psmallmatrix}$；因 $C(1,-5)^\top=(5,-1)^\top$，解得 $c=5/13,s=12/13$。利用 $B$ 的坐标求平移量 $d=(37/13,-62/13)$。
+\[
+\boxed{x=\tfrac5{13}x'-\tfrac{12}{13}y'+\tfrac{37}{13},\quad
+y=\tfrac{12}{13}x'+\tfrac5{13}y'-\tfrac{62}{13}.}
+\]
+\ans{代入两组点坐标均严格吻合原题，和书后一致。}
+
+\Q{9}{由两条对称轴和半轴长度还原椭圆}
+\textbf{条件：}长轴 $x+y=0$，短轴 $x-y+1=0$；半长轴为 2，半短轴为 1。\hint{把各点到两条轴的有向距离作为新坐标，不能把直线方程本身当距离（要除以法向模）。}
+椭圆中心是 $(-1/2,1/2)$。沿长轴的有向正交坐标 $u=(x-y+1)/\sqrt2$，沿短轴的为 $v=(x+y)/\sqrt2$，故 $u^2/4+v^2=1$。去分母展开得
+\[\boxed{5x^2+6xy+5y^2+2x-2y-7=0.}\]
+\ans{与书后答案一致。}
+
+\Q{10}{由椭圆对称轴及两点确定二次式}
+\textbf{条件：}两对称轴 $x-y+1=0$ 与 $x+y+1=0$，过 $(-2,-1)$、$(0,-2)$。\hint{以两轴有向距离的平方作线性组合，由过点条件求两系数。}
+设 $U=x-y+1,V=x+y+1$，则曲线可记为 $pU^2+qV^2=1$。代入 $(-2,-1)$ 得 $4q=1$；代入 $(0,-2)$ 得 $9p+q=1$，即 $p=1/12,q=1/4$。
+\[U^2+3V^2=12\quad\Longrightarrow\quad\boxed{x^2+xy+y^2+2x+y-2=0.}\]
+\ans{与原书一致。}
+
+\Q{11}{由两条垂直的双曲线对称轴和两点确定双曲线}
+\textbf{轴：}$x+2y-4=0,\ 2x-y+2=0$；过原点及 $(-9/4,1)$。\hint{两轴交于 $H=(0,2)$；选 $U=x+2y-4,V=2x-y+2$，令方程 $pU^2+qV^2=1$。}
+原点对应 $(U,V)=(-4,2)$，第二点对应 $(-17/4,-7/2)$。所以
+\[
+16p+4q=1,\quad\frac{289}{16}p+\frac{49}{4}q=1
+\quad\Longrightarrow\quad p=\frac1{15},\ q=-\frac1{60}.
+\]
+因此 $4U^2-V^2=60$，化为旧坐标得到
+\[\boxed{3y^2+4xy-8x-12y=0.}\]
+\ans{与书后结果一致；这里给的是\textbf{对称轴}，不是渐近线。}
+
+\Q{12}{已知顶点与焦点写抛物线方程——书后疑误重点}
+\textbf{题意：}顶点 $V=(4,2)$，焦点 $F=(2,0)$。\hint{先建正交轴：轴由 $V$ 指向 $F$，两点距离 $p=2\sqrt2$ 才是“顶点到焦点的距离”。}
+令 $u=(6-x-y)/\sqrt2$ 指向焦点，$v=(x-y-2)/\sqrt2$ 为垂直轴坐标，焦点在 $(p,0)$，准线在 $u=-p$，故
+\[
+v^2=4pu=8\sqrt2\,u
+\quad\Longrightarrow\quad (x-y-2)^2=16(6-x-y).
+\]
+展开为
+\[\boxed{x^2+y^2-2xy+12x+20y-92=0.}\]
+\caution{书后印为 $x^2+y^2-2xy+4x+12y-44=0$。该式同样经过 $(4,2)$，但顶点到焦点距离变为 $\sqrt2$，焦点是 $(3,1)$，不满足题干 $F=(2,0)$。本讲义按\textbf{原题指定焦点}给出上式，已核查两焦点不一致。}
+
+\begin{center}
+\begin{tikzpicture}[scale=.80,>=Stealth]
+\draw[->](-1.85,0)--(3,0)node[right]{$u$（指向焦点）};
+\draw[->](0,-1.8)--(0,1.8)node[above]{$v$};
+\draw[dashed,orange!90!black,thick](-1.2,-1.65)--(-1.2,1.65)node[above]{$u=-p$};
+\draw[very thick,mint,domain=-1.7:1.7,samples=90]plot({\x*\x/4.8},\x);
+\draw[accent,<->](0,-.45)--(1.2,-.45)node[midway,below]{$p$};
+\fill (0,0)circle(1.5pt)node[below left]{$V$};
+\fill (1.2,0)circle(1.5pt)node[above]{$F$};
+\node[align=left]at(4.4,1.0){示意：先定\textbf{顶点、焦点、准线}\\再写 $v^2=4pu$};
+\end{tikzpicture}
+\end{center}
+\ans{按原题题干，正确焦点为 $(2,0)$ 的方程如方框；此项已列入 $\texttt{AUDIT.md}$。}
+
+\Q{13}{绕 $(1,1,1)$ 轴旋转 60° 时坐标系的变换}
+\textbf{题意：}新系由原坐标架右手旋转 60° 得到，两原点相同。\hint{旋转的是\textbf{坐标架}，旧坐标与新坐标的关系是 $X=R X'$（不是 $R^\top X'$）。}
+单位旋转轴 $u=(1,1,1)/\sqrt3$，由 Rodrigues 公式
+\[
+R=\cos\theta I+(1-\cos\theta)uu^\top+\sin\theta[u]_\times
+\]
+且 $\cos60^\circ=1/2,\sin60^\circ=\sqrt3/2$，得
+\[
+\boxed{R=\frac13\begin{pmatrix}2&-1&2\\2&2&-1\\-1&2&2\end{pmatrix}},
+\qquad X=RX'.
+\]
+\ans{矩阵正交、行列式为 1，书后结果一致。可用 $R(1,1,1)^\top=(1,1,1)^\top$ 验证旋转轴保持不变。}
+
+\Q{14}{椭球上的三条两两垂直半径倒平方和}
+\textbf{题意：}椭球 $x^2/a^2+y^2/b^2+z^2/c^2=1$，$OA_i$ 两两垂直。\hint{用三个单位方向向量 $u_i=OA_i/|OA_i|$ 构成正交矩阵。}
+设 $r_i=|OA_i|$，则由 $A_i=r_i u_i$ 在椭球上，
+\[
+\frac1{r_i^2}=\frac{u_{ix}^2}{a^2}+\frac{u_{iy}^2}{b^2}+\frac{u_{iz}^2}{c^2}.
+\]
+正交矩阵的每一列平方和为 1：$\sum_i u_{ix}^2=\sum_i u_{iy}^2=\sum_i u_{iz}^2=1$。三式求和即可。
+\ans{$\displaystyle\sum_{i=1}^3\frac1{r_i^2}=\frac1{a^2}+\frac1{b^2}+\frac1{c^2}$，得证。}
+
+\Q{15}{正交变换下二次齐次式的迹不变}
+\textbf{题意：}对称矩阵 $A=(a_{ij})$ 的齐次型 $f(X)=X^\top AX$，正交矩阵 $C$ 的三行分别代入 $f$ 后求和。\hint{三行（或列）互相正交，各元素列内平方和为 1、不同列点积为零。}
+记第 $i$ 行为 $c_i^\top$，$\sum_i f(c_i)=\sum_i c_i^\top A c_i=\operatorname{tr}(CAC^\top)$，利用迹的循环性质
+\[
+\operatorname{tr}(CAC^\top)=\operatorname{tr}(AC^\top C)=\operatorname{tr}(A).
+\]
+\ans{结果是 $a_{11}+a_{22}+a_{33}$，不需逐项展开九个二次项。}
+
+\Q{16}{圆锥存在三条正交直母线的充要条件}
+\textbf{题意：}$X^\top AX=0$ 为实二次锥，证明能找到三个两两垂直的直母线当且仅当 $\operatorname{tr}(A)=0$。\hint{必要性来自上一题；充分性可借助对称矩阵的“零对角正交化”。}
+若母线单位方向 $u_i$ 两两正交，则 $u_i^\top A u_i=0$，故 $\operatorname{tr}(A)=\sum_i u_i^\top A u_i=0$。
+反过来，若 $\operatorname{tr}(A)=0$，那么连续函数 $g(u)=u^\top Au$ 在单位球面上若非处处零，其正负必同时出现（否则三个正交特征向量上的值不能和为 0）；由介值定理存在单位 $u_1$ 令 $g(u_1)=0$。限制到其正交补二维平面，限制型的迹也为 0，故在该平面的单位圆上也存在两条互相垂直、二次型值都为 0 的方向 $u_2,u_3$（取旋转 $45^\circ$ 后的正交对即可）。
+\ans{$\boxed{a_{11}+a_{22}+a_{33}=0}$ 为所求充要条件。证明没有假设锥面非退化。}

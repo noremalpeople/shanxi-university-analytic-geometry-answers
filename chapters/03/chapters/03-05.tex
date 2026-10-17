@@ -1,0 +1,105 @@
+\section{习题 3.5：二次曲线的度量特征与对称轴}
+\chr{5}{173—174}{179—180}{307}
+\K{\textbf{只在直角坐标系中}，对称矩阵 $A$ 的正交特征向量才能直接作为曲线的几何主轴方向。若曲线有中心 $h$，主轴是通过 $h$ 且平行于特征向量的直线；无中心抛物线只需寻找唯一的对称轴。}
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Stealth]
+\draw[->](-3,0)--(3.6,0)node[right]{$x$};\draw[->](0,-2)--(0,2.5)node[above]{$y$};
+\coordinate(H)at(1,.4);\draw[->,thick,accent](H)--++(1.7,1.3)node[above]{$e_1$};
+\draw[->,thick,mint](H)--++(-1.0,1.3)node[left]{$e_2$};
+\begin{scope}[shift={(1,.4)},rotate=37]\draw[very thick,orange!80!black](0,0)ellipse(1.8 and .8);\draw[densely dashed,accent](-2.4,0)--(2.4,0);\draw[densely dashed,mint](0,-1.45)--(0,1.45);\end{scope}
+\fill(H)circle(1.4pt)node[below]{$H$};
+\end{tikzpicture}
+\end{center}
+\readtip{\textbf{读图：}椭圆方程可能含 $xy$，但旋转坐标轴到正交主方向后混合项消失；不能把图上的长轴与原来的 $x$ 轴混淆。}
+
+\Q{1}{五条二次曲线的全部对称轴与图形}
+\hint{设 $F=ax^2+2hxy+by^2+2gx+2fy+c$。有心曲线先解 $A H=-b$，再求 $A$ 特征向量；抛物线则沿矩阵零特征方向找轴。}
+\subpart{(1) $9x^2+4xy+6y^2+2x+16y+10=0$}
+\[
+A=\begin{pmatrix}9&2\\2&6\end{pmatrix},\quad H=(1/5,-7/5),
+\quad\lambda_1=5,\ \lambda_2=10.
+\]
+分别取正交特征方向 $(-1,2)$、$(2,1)$，过 $H$ 得
+\[\boxed{x-2y-3=0,\qquad 2x+y+1=0}.\]
+曲线是旋转椭圆（矩阵正定）；作图时先标中心，再沿两主轴方向画长短半轴。
+\subpart{(2) $4x^2-4y^2+6xy-6x-2y+1=0$}
+$A=\begin{psmallmatrix}4&3\\3&-4\end{psmallmatrix}$，中心 $H=(3/5,1/5)$，特征值 $5,-5$，两个正交主方向 $(3,1)$、$(-1,3)$。对应主轴
+\[\boxed{3x+y-2=0,\qquad x-3y=0}.\]
+该曲线是旋转双曲线，渐近线平分两条主轴间的夹角。
+\subpart{(3) $x^2+2xy+y^2+4x-10y+9=0$}
+$A=\begin{psmallmatrix}1&1\\1&1\end{psmallmatrix}$，特征值 $2,0$；零特征方向 $(1,-1)$ 是抛物线轴方向。将 $u=(x+y)/\sqrt2,v=(x-y)/\sqrt2$ 代入，得
+\[2u^2-3\sqrt2u+7\sqrt2v+9=0.
+\]
+沿 $u$ 配方后，顶点满足 $u=3\sqrt2/4$，所以\textbf{唯一对称轴}是
+\[\boxed{2x+2y-3=0}.\]
+\subpart{(4) $2xy-4x+2y-3=0$}
+$A=\begin{psmallmatrix}0&1\\1&0\end{psmallmatrix}$，中心 $H=(-1,2)$，正交特征方向 $(1,1)$、$(1,-1)$；曲线为直角双曲线，主轴为
+\[\boxed{x+y-1=0,\qquad x-y+3=0}.\]
+\subpart{(5) $x^2-6xy+9y^2-8x+8y=0$}
+$F=(x-3y)^2-8x+8y$，二次型零方向 $(3,1)$。取 $u=(x-3y)/\sqrt{10}$、$v=(3x+y)/\sqrt{10}$，代入
+\[F=10u^2-\tfrac{32}{\sqrt{10}}u-\tfrac{16}{\sqrt{10}}v=0.
+\]
+顶点处 $u=8/(5\sqrt{10})$，于是对称轴为
+\[\boxed{5x-15y-8=0}.\]
+\ans{五小题的\textbf{两轴／唯一轴}均求出；与原书 3.5 第 1 题答案一致。}
+
+\Q{2}{原点为中心的椭圆或双曲线，两条主轴的方程}
+\textbf{给定：}$F=a_{11}x^2+2a_{12}xy+a_{22}y^2+c=0$，是真椭圆或双曲线。\hint{两条对称轴必须分别沿 $A$ 的两个正交特征向量。}
+方向向量 $(x,y)$ 为特征向量意味着 $A(x,y)^\top=\lambda(x,y)^\top$，消去 $\lambda$：
+\[
+(a_{11}x+a_{12}y)y-(a_{12}x+a_{22}y)x=0.
+\]
+因此主轴所在的两条直线由二次齐次方程
+\[\boxed{a_{12}(x^2-y^2)-(a_{11}-a_{22})xy=0}\]
+给出。由于 $A$ 实对称，其两条不同特征方向正交，故式子分解成互相垂直的两条主轴（非圆情形）。
+\readtip{\textbf{圆的特例：}若 $a_{11}=a_{22}$、$a_{12}=0$，是以原点为中心的圆，则任意过原点的直线都是对称轴；此时方框式恒等于零，应按“无限多条对称轴”理解。}
+\ans{一般情形与书后公式一致，并补充了原书未特别强调的圆形退化特例。}
+
+\Q{3}{抛物线的顶点恰为原点的充要条件}
+\textbf{曲线：}$F(x,y)=x^\top Ax+2b^\top x=0$，已知它是真抛物线（故 $\operatorname{rank}A=1$，$\det H\ne0$）。\hint{在正交基下，$A=\operatorname{diag}(\lambda,0)$、$\lambda\ne0$，抛物线形如 $\lambda u^2+2p u+2qv=0$，其中 $q\ne0$。}
+轴方向是零特征方向 $v$，其顶点满足完成平方后的 $u=-p/\lambda$；原点是顶点当且仅当 $p=0$。同时
+\[
+\Phi(b_1,b_2)=b^\top A b=\lambda p^2.
+\]
+因此 $p=0$ 等价于 $\Phi(b_1,b_2)=0$；已知真抛物线排除了 $q=0$ 时产生的重线或平行线。
+\ans{\textbf{原点为顶点 $\Longleftrightarrow\Phi(b_1,b_2)=0$}，充分性与必要性均得证。}
+
+\Q{4}{给定两条正交主轴和两点求曲线}
+\textbf{主轴：}$x-y-5=0$、$x+y+3=0$；经过 $(3/2,-3/2)$ 与 $(3/2,-7/2)$。\hint{两轴交于中心 $(1,-4)$；选 $U=x-y-5,V=x+y+3$，其方向正交但未单位化，比例系数可通过待求方程吸收。}
+设方程 $pU^2+qV^2=1$。第二点对应 $U=0,V=1$，所以 $q=1$；第一点对应 $U=-2,V=3$，故 $4p+9=1$，即 $p=-2$。
+\[
+-2(x-y-5)^2+(x+y+3)^2=1.
+\]
+展开整理得
+\[\boxed{x^2+y^2-6xy-26x+14y+42=0.}\]
+\ans{与原书核对一致，曲线是以 $(1,-4)$ 为中心、两给定直线为主轴的双曲线。}
+
+\Q{5}{确定参数 $a$ 并构造正交坐标使抛物线化为 $y'=cx'^2$}
+\textbf{题意：}$ax^2+4ay^2+4xy+10x-20y-1=0$，$a>0$，已知是真抛物线。\hint{真抛物线的二次型矩阵 $A=\begin{psmallmatrix}a&2\\2&4a\end{psmallmatrix}$ 必须秩 1，即 $\det A=0$。}
+\subpart{第一步：确定 $a$} $\det A=4a^2-4=0$，结合 $a>0$ 得 $\boxed{a=1}$。因此
+\[F=(x+2y)^2+10x-20y-1=0.
+\]
+\subpart{第二步：旋转到正交主轴} 取单位正交新基
+\[
+e'_1=\left(\frac1{\sqrt5},\frac2{\sqrt5}\right),\qquad
+e'_2=\left(-\frac2{\sqrt5},\frac1{\sqrt5}\right),
+\]
+其中 $e'_1$ 平行二次型的非零特征方向，$e'_2$ 是开口方向，且 $\det[e'_1,e'_2]=1$ 保持右手系。先引入旋转坐标
+\[
+X=\frac{x+2y}{\sqrt5},\qquad Y=\frac{-2x+y}{\sqrt5}.
+\]
+代入旧方程得到
+\[
+5X^2-6\sqrt5X-8\sqrt5Y-1=0.
+\]
+\subpart{第三步：配方并平移顶点} 
+\[
+5\left(X-\frac3{\sqrt5}\right)^2=8\sqrt5\left(Y+\frac{\sqrt5}{4}\right).
+\]
+定义 $x'=X-3/\sqrt5,\ y'=Y+\sqrt5/4$，即最终新原点满足 $X=3/\sqrt5,Y=-\sqrt5/4$，换回原系
+\[
+\boxed{O'=\left(\frac{11}{10},\frac{19}{20}\right)},\qquad
+\boxed{y'=\frac{\sqrt5}{8}x'^2}.
+\]
+\subpart{第四步：核查} 把 $(x',y')=(0,0)$ 转回旧系得 $O'$，代入 $F$ 为零；计算正交变换矩阵的转置乘本身为 $I$，行列式为 1，因此新系仍是右手直角坐标系。
+\ans{$\boxed{a=1,c=\sqrt5/8}$，新坐标正交基及原点如上，和书后答案一致。}

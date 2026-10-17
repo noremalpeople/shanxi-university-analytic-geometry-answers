@@ -1,0 +1,239 @@
+\section{习题 1.5：向量的多重乘积}\label{sec:15}
+\sectionlead{14}{45--46}{302}{二重外积优先用 $a\times(b\times c)=b(a\cdot c)-c(a\cdot b)$；混合积是有符号的体积，遇到左手坐标系时必须核查方向号。}
+\begin{tcolorbox}[colback=white,colframe=rulegray,boxrule=0.4pt,arc=1.5mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
+\concepttitle{图形理解 1.5：混合积 = 有向体积}
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Stealth]
+\coordinate (O) at (0,0);
+\coordinate (A) at (3.2,0.3);
+\coordinate (B) at (1.0,2.2);
+\coordinate (C) at (0.7,1.2);
+\coordinate (AB) at ($(A)+(B)$);
+\coordinate (AC) at ($(A)+(C)$);
+\coordinate (BC) at ($(B)+(C)$);
+\coordinate (ABC) at ($(A)+(B)+(C)$);
+\draw[->,thick,blue] (O)--(A) node[below right]{$\alpha$};
+\draw[->,thick,teal] (O)--(B) node[above left]{$\beta$};
+\draw[->,thick,orange!80!black] (O)--(C) node[left]{$\gamma$};
+\draw[gray] (A)--(AB)--(B);
+\draw[gray] (A)--(AC)--(C);
+\draw[gray] (B)--(BC)--(C);
+\draw[gray] (AB)--(ABC)--(BC);
+\draw[gray] (AC)--(ABC);
+\draw[gray] (BC)--(ABC);
+\node at (6.0,2.0) {$(\alpha,\beta,\gamma)$ 的绝对值};
+\node at (6.0,1.3) {就是这个平行六面体的体积};
+\node at (6.0,0.6) {符号由定向（右手 / 左手）决定};
+\fill (O) circle(1.4pt) node[below left]{$O$};
+\end{tikzpicture}
+\end{center}
+\figcaptiontxt{这一节建议始终把混合积看成“底面积 $\times$ 高”的有向版本。只要题目出现左手系，就必须重新检查正负号。}
+\end{tcolorbox}
+
+\Q{1}{二重外积的 Jacobi 恒等式}
+\textbf{题意概述：}对任意 $\alpha,\beta,\gamma$，证明 $\alpha\times(\beta\times\gamma)+\beta\times(\gamma\times\alpha)+\gamma\times(\alpha\times\beta)=0$。
+\idea{逐项应用 BAC--CAB 公式，观察同一向量的系数两两抵消。}
+\begin{align*}
+\alpha\times(\beta\times\gamma)&=\beta(\alpha\cdot\gamma)-\gamma(\alpha\cdot\beta),\\
+\beta\times(\gamma\times\alpha)&=\gamma(\beta\cdot\alpha)-\alpha(\beta\cdot\gamma),\\
+\gamma\times(\alpha\times\beta)&=\alpha(\gamma\cdot\beta)-\beta(\gamma\cdot\alpha).
+\end{align*}
+三式相加，利用内积对称性，每一对项恰好抵消。
+\ans{Jacobi 恒等式成立。\textbf{切记} $a\times(b\times c)$ 与 $(a\times b)\times c$ 不相等。}
+
+\Q{2}{已知内积与外积求未知向量：纠错题}
+\textbf{题意概述：}$\alpha\ne0$、$\beta\perp\alpha$，$\alpha\cdot\xi=c$、$\alpha\times\xi=\beta$，求 $\xi$；原题给出一个含分母 $|\alpha|$ 的待证式。
+\idea{从 $\alpha\times(\alpha\times\xi)=\alpha(\alpha\cdot\xi)-|\alpha|^2\xi$ 出发，解出 $\xi$。}
+由两个条件可得
+\[
+\alpha\times\beta=c\alpha-|\alpha|^2\xi
+\quad\Longrightarrow\quad
+\boxed{\displaystyle\xi=\frac{c\alpha-\alpha\times\beta}{|\alpha|^2}}.
+\]
+\warning{扫描原题纸质第 45 页（PDF 51 页）此处的分母印为 $|\alpha|$，不带平方。由上述推导可知，一般应为 $|\alpha|^2$；仅当 $|\alpha|=1$ 时两式一致。举例取 $\alpha=(2,0,0)$、$\beta=(0,2,0)$、$c=2$，正确 $\xi=(1,0,-1)$，若误除以 $|\alpha|=2$ 则得 $(2,0,-2)$，不满足 $\alpha\cdot\xi=2$。}
+\ans{按给定条件严格求得的唯一解如方框公式。原书在本题未列简答，此项依据独立推导判为题干公式疑误。}
+
+\Q{3}{已知一个外积和一个内积的向量方程组}
+\textbf{题意概述：}$\alpha\cdot\beta\neq0$、$\gamma\cdot\beta=0$，解 $\alpha\cdot\xi=c$、$\beta\times\xi=\gamma$。
+\idea{第二式的通解是一个特解加 $t\beta$；第一式确定 $t$。}
+由 $\beta\times(\gamma\times\beta)=|\beta|^2\gamma-\beta(\gamma\cdot\beta)=|\beta|^2\gamma$，取
+\[
+\xi_0=\frac{\gamma\times\beta}{|\beta|^2},\qquad \xi=\xi_0+t\beta.
+\]
+代入 $\alpha\cdot\xi=c$，且 $\alpha\cdot\beta\ne0$，解得
+\[
+t=\frac{c-\alpha\cdot\xi_0}{\alpha\cdot\beta}.
+\]
+\ans{$\displaystyle\boxed{\xi=\frac{\gamma\times\beta}{|\beta|^2}
++\frac{c-\frac{(\alpha,\gamma,\beta)}{|\beta|^2}}{\alpha\cdot\beta}\,\beta}$，与书后答案一致。}
+\tip{原题是 $\alpha,\beta$ \textbf{不垂直}，即 $\alpha\cdot\beta\ne0$；不是“不平行”。这个条件保证 $t$ 可以唯一确定。}
+
+\Q{4}{四面体体积：行列式与绝对值}
+\textbf{题意概述：}直角坐标中 $A=(1,0,1)$、$B=(-1,1,5)$、$C=(-1,-3,-3)$、$D=(0,3,4)$，求四面体体积。
+\idea{体积等于以同一顶点出发的三向量混合积绝对值的 $1/6$。}
+\[
+\V{AB}=(-2,1,4),\quad\V{AC}=(-2,-3,-4),\quad\V{AD}=(-1,3,3).
+\]
+\[
+\begin{vmatrix}-2&1&4\\-2&-3&-4\\-1&3&3\end{vmatrix}=-32,
+\quad V=\frac{|{-32}|}{6}=\frac{16}{3}.
+\]
+\ans{$V=16/3$，与书后结果一致。}
+\tip{混合积可正可负，而实际几何体积一定非负，必须取绝对值。}
+
+\Q{5}{混合积：右手系、左手系与定向符号}
+\textbf{题意概述：}求三组向量的混合积：(1) 在右手直角系 $\alpha=(1,0,3)$、$\beta=(2,4,3)$、$\gamma=(3,4,1)$；(2) 在\textbf{左手}直角系 $\alpha=(3,2,-1)$、$\beta=(0,3,3)$、$\gamma=(5,2,1)$；(3) 三向量构成右手系，模均为 2、两两夹角 $60^\circ$。
+\idea{右手正交基中 $(\alpha,\beta,\gamma)$ 等于坐标行列式；左手正交基则是该行列式的相反数。}
+\begin{align*}
+(1)\quad&(\alpha,\beta,\gamma)
+=\begin{vmatrix}1&0&3\\2&4&3\\3&4&1\end{vmatrix}=-20.\\
+(2)\quad&\det\begin{pmatrix}3&2&-1\\0&3&3\\5&2&1\end{pmatrix}=36.
+\end{align*}
+但第 (2) 小题的\textbf{有向混合积}在左手直角基中应为 $-36$。对第 (3) 小题，Gram 行列式的单位化值为 $1/2$，且右手定向为正，
+\[
+(\alpha,\beta,\gamma)=2\cdot2\cdot2\sqrt{\frac12}=4\sqrt2.
+\]
+\warning{\textbf{另一个可能的书后答案符号问题：}纸质页 296（PDF 302）把第 (2) 小题列为 $36$。但在\emph{空间已规定右手定向，外积使用通常的右手规则}的定义下，左手坐标矩阵的行列式须取负，故应为 $-36$。若作者把混合积专门约定为“所选坐标基的行列式”，则需要额外声明随坐标基改变外积定向；原文此处没有给出这种新约定。}
+\ans{(1) $-20$；(2) 按通常外积定义为 $-36$（书后印为 $+36$，已标记差异）；(3) $4\sqrt2$。}
+
+\Q{6}{以混合积为零判别共面}
+\textbf{题意概述：}在空间仿射系中，判断三组向量坐标是否共面：
+\[
+\begin{array}{l}
+(1)\ (1,2,3),(2,3,4),(3,4,5);\\
+(2)\ (3,2,-1),(0,3,7),(2,2,1);\\
+(3)\ (2,1,3),(1,-1,-4),(5,1,2).
+\end{array}
+\]
+\idea{三个向量共面当且仅当坐标三阶行列式为零，任意非退化仿射基下成立。}
+逐个展开可得
+\[
+D_1=0,\qquad D_2=1,\qquad D_3=0.
+\]
+例如第一组第三向量等于第二向量的两倍减去第一向量：$(3,4,5)=2(2,3,4)-(1,2,3)$。
+\ans{第 (1)、(3) 组共面，第 (2) 组不共面；与原书“一、否、是”一致。}
+
+\Q{7}{四层外积展开的第一种形式}
+\textbf{题意概述：}证明
+\[
+\alpha\times\bigl(\beta\times(\gamma\times\delta)\bigr)
+=(\beta\cdot\delta)(\alpha\times\gamma)
+-(\beta\cdot\gamma)(\alpha\times\delta).
+\]
+\idea{先对最内侧 $\beta\times(\gamma\times\delta)$ 使用 BAC--CAB。}
+\[
+\beta\times(\gamma\times\delta)
+=\gamma(\beta\cdot\delta)-\delta(\beta\cdot\gamma).
+\]
+将结果代入并按外积双线性展开，右边两项立即得到。
+\ans{恒等式成立；括号次序不可随意更换。}
+
+\Q{8}{四层外积展开的第二种形式}
+\textbf{题意概述：}证明 $\alpha\times(\beta\times(\gamma\times\delta))=(\alpha,\gamma,\delta)\beta-(\alpha\cdot\beta)(\gamma\times\delta)$。
+\idea{这次把 $\gamma\times\delta$ 整体看成一个向量 $w$，一次使用 BAC--CAB。}
+\[
+\alpha\times(\beta\times w)
+=\beta(\alpha\cdot w)-w(\alpha\cdot\beta),\qquad w=\gamma\times\delta.
+\]
+由于 $\alpha\cdot w=(\alpha,\gamma,\delta)$，代回即为待证式。
+\ans{恒等式成立。第 7、8 题的结果相等，可进一步导出第 9 题的恒等式。}
+
+\Q{9}{四向量的拉格朗日--混合积分解式}
+\textbf{题意概述：}证明
+\[
+(\beta,\gamma,\delta)\alpha=(\alpha\cdot\beta)(\gamma\times\delta)
++(\alpha\cdot\gamma)(\delta\times\beta)
++(\alpha\cdot\delta)(\beta\times\gamma).
+\]
+\idea{当 $\beta,\gamma,\delta$ 不共面时，以它们为一组基；混合积配合叉积构成对偶基。共面时再利用恒等式连续性。}
+令右端为 $R$。当 $D=(\beta,\gamma,\delta)\ne0$，逐一与 $\beta,\gamma,\delta$ 做内积，使用混合积的循环不变性，得到
+\[
+R\cdot\beta=D(\alpha\cdot\beta),\quad
+R\cdot\gamma=D(\alpha\cdot\gamma),\quad
+R\cdot\delta=D(\alpha\cdot\delta).
+\]
+因此 $R-D\alpha$ 同时垂直一组空间基，只能为零。若 $D=0$，取可逆向量组逼近并利用两侧对向量分量的多项式连续性，也得该恒等式。
+\ans{恒等式对所有四向量成立，包括零向量和线性相关情形。}
+
+\Q{10}{两个外积再作外积的两种展开}
+\textbf{题意概述：}证明
+\begin{align*}
+(\alpha\times\beta)\times(\gamma\times\delta)
+&=(\alpha,\beta,\delta)\gamma-(\alpha,\beta,\gamma)\delta,\\
+&=(\alpha,\gamma,\delta)\beta-(\beta,\gamma,\delta)\alpha.
+\end{align*}
+\idea{一式用 $u\times(\gamma\times\delta)$，另一式用 $(\alpha\times\beta)\times v$。}
+取 $u=\alpha\times\beta$，则 $u\times(\gamma\times\delta)=\gamma(u\cdot\delta)-\delta(u\cdot\gamma)$，得第一式。
+取 $v=\gamma\times\delta$，则 $(\alpha\times\beta)\times v=\beta(\alpha\cdot v)-\alpha(\beta\cdot v)$，得第二式。
+\ans{两式成立；混合积的三个向量顺序不能私自交换，交换两列要变号。}
+
+\Q{11}{四向量恒等线性关系}
+\textbf{题意概述：}证明
+\[
+(\beta,\gamma,\delta)\alpha-(\alpha,\gamma,\delta)\beta
++(\alpha,\beta,\delta)\gamma-(\alpha,\beta,\gamma)\delta=0.
+\]
+\idea{根据第 10 题同一向量 $w=(\alpha\times\beta)\times(\gamma\times\delta)$ 的两种表达。}
+把第 10 题的两个表达式移到同一边：
+\[
+(\alpha,\beta,\delta)\gamma-(\alpha,\beta,\gamma)\delta
+-(\alpha,\gamma,\delta)\beta+(\beta,\gamma,\delta)\alpha=0.
+\]
+按题目顺序重排各项即证。
+\ans{得证。公式常被称为三维空间中四向量的交替线性恒等关系。}
+
+\Q{12}{三个向量共面与三个两两外积共面的等价性}
+\textbf{题意概述：}证明 $\alpha,\beta,\gamma$ 共面 $\Leftrightarrow$ $\alpha\times\beta,\beta\times\gamma,\gamma\times\alpha$ 共面。
+\idea{使用恒等式
+$(\alpha\times\beta,\beta\times\gamma,\gamma\times\alpha)=(\alpha,\beta,\gamma)^2$。}
+令 $D=(\alpha,\beta,\gamma)$。由第 10 题，
+\[
+(\beta\times\gamma)\times(\gamma\times\alpha)
+=(\beta,\gamma,\alpha)\gamma=D\gamma.
+\]
+因此三个外积的混合积为
+\[
+(\alpha\times\beta)\cdot[(\beta\times\gamma)\times(\gamma\times\alpha)]
+=D(\alpha\times\beta)\cdot\gamma=D^2.
+\]
+两边的零值条件相同。
+\ans{若前一组混合积为零，后一组混合积也为零；反过来同理，等价成立。}
+\tip{若 $\alpha,\beta,\gamma$ 已共面且有两个不平行，那么全部非零的两两外积均垂直于该平面，实际上互相平行。}
+
+\Q{13}{三角形边向量式与仿射线性相关}
+\textbf{题意概述：}证明
+\[
+\alpha\times\beta+\beta\times\gamma+\gamma\times\alpha=0
+\quad\Longleftrightarrow\quad
+\exists(c_1,c_2,c_3)\ne(0,0,0),\ \sum c_i=0,\ \sum c_i\alpha_i=0,
+\]
+其中 $\alpha_1=\alpha$、$\alpha_2=\beta$、$\alpha_3=\gamma$。
+\idea{把左边整理为两个差向量的外积。}
+\[
+\alpha\times\beta+\beta\times\gamma+\gamma\times\alpha
+=(\alpha-\gamma)\times(\beta-\gamma).
+\]
+其为零当且仅当 $\alpha-\gamma$ 与 $\beta-\gamma$ 线性相关；存在不全为零的 $s,t$ 使 $s(\alpha-\gamma)+t(\beta-\gamma)=0$。令
+\[
+c_1=s,\quad c_2=t,\quad c_3=-s-t
+\]
+便满足所求；反向把相应式子恢复，亦成立。
+\ans{双向等价成立。注意 $c_1+c_2+c_3=0$ 是\textbf{额外的系数条件}，不能漏掉。}
+
+\Q{14}{三个标量外积构成的恒等式}
+\textbf{题意概述：}证明
+\[
+(\alpha\times\beta)\cdot(\gamma\times\delta)
++(\alpha\times\delta)\cdot(\beta\times\gamma)
++(\alpha\times\gamma)\cdot(\delta\times\beta)=0.
+\]
+\idea{每个外积的内积都用拉格朗日恒等式
+$(u\times v)\cdot(w\times z)=(u\cdot w)(v\cdot z)-(u\cdot z)(v\cdot w)$。}
+分别展开为
+\begin{align*}
+T_1&=(\alpha\cdot\gamma)(\beta\cdot\delta)-(\alpha\cdot\delta)(\beta\cdot\gamma),\\
+T_2&=(\alpha\cdot\beta)(\delta\cdot\gamma)-(\alpha\cdot\gamma)(\delta\cdot\beta),\\
+T_3&=(\alpha\cdot\delta)(\gamma\cdot\beta)-(\alpha\cdot\beta)(\gamma\cdot\delta).
+\end{align*}
+利用内积的对称性可见六项两两抵消，$T_1+T_2+T_3=0$。
+\ans{恒等式成立，对任意四向量有效。}

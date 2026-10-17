@@ -1,0 +1,433 @@
+\probnext{1}{平行四边形的对角线与边}
+\textbf{题意。} $ABCD$ 为平行四边形，$\V{AC}=\alpha$、$\V{BD}=\beta$，求 $\V{AB}$ 与 $\V{BC}$。
+\idea{优先用一条对角线是两条邻边的和、另一条对角线是两条邻边的差建立二元一次方程。}
+设 $\bm x=\V{AB}$、$\bm y=\V{BC}$。由首尾相接，
+\[
+\V{AC}=\bm x+\bm y=\alpha.
+\]
+因为 $\V{AD}=\V{BC}=\bm y$，故
+\[
+\V{BD}=\V{BA}+\V{AD}=-\bm x+\bm y=\beta.
+\]
+两式相加得 $2\bm y=\alpha+\beta$；相减得 $2\bm x=\alpha-\beta$。
+\ans{$\displaystyle\V{AB}=\frac{\alpha-\beta}{2},\qquad\V{BC}=\frac{\alpha+\beta}{2}.$ 与书后答案一致。}
+\tip{\textbf{检验：}将两个结果相加应回到 $\alpha$，作 $\V{BC}-\V{AB}$ 应回到 $\beta$。}
+
+\probnext{2}{平行四边形边中点的向量}
+\textbf{题意。} $E,F$ 分别为平行四边形 $ABCD$ 的 $BC,CD$ 中点，已知 $\V{AE}=\alpha$、$\V{AF}=\beta$，求 $\V{AB}$、$\V{AD}$。
+\idea{选 $\bm x=\V{AB}$、$\bm y=\V{AD}$ 作为基向量，先表达中点。}
+因为 $\V{BC}=\bm y$，且 $E$ 是 $BC$ 的中点，
+\[
+\alpha=\V{AE}=\V{AB}+\V{BE}=\bm x+\tfrac12\bm y.
+\]
+同理 $\V{DC}=\bm x$，$F$ 是 $CD$ 的中点，故
+\[
+\beta=\V{AF}=\V{AD}+\V{DF}=\bm y+\tfrac12\bm x.
+\]
+写作 $2\alpha=2\bm x+\bm y$、$2\beta=\bm x+2\bm y$，消元得
+\[
+3\bm x=4\alpha-2\beta,\qquad3\bm y=4\beta-2\alpha.
+\]
+\ans{$\displaystyle\V{AB}=\frac{4\alpha-2\beta}{3},\qquad \V{AD}=\frac{4\beta-2\alpha}{3}.$ 与书后答案一致。}
+\tip{\textbf{易错：}从 $A$ 出发到 $F$ 时用的是 $\V{DF}=\frac12\V{DC}$，不是 $\frac12\V{CD}$。}
+
+\probnext{3}{三角形三条中线}
+\textbf{题意。} $AD,BE,CF$ 为 $\triangle ABC$ 三条中线，$\V{AB}=\alpha$、$\V{AC}=\beta$，求 $\V{AD},\V{BE},\V{CF}$。
+\idea{设 $A$ 为临时原点，则 $B=\alpha$、$C=\beta$；中点坐标等于端点向量平均。}
+$D$ 是 $BC$ 中点，故 $\V{AD}=\frac12(\alpha+\beta)$。
+$E$ 是 $CA$ 中点，$\V{AE}=\beta/2$，于是
+\[
+\V{BE}=\V{BA}+\V{AE}=-\alpha+\frac{\beta}{2}.
+\]
+$F$ 是 $AB$ 中点，$\V{AF}=\alpha/2$，于是
+\[
+\V{CF}=\V{CA}+\V{AF}=-\beta+\frac{\alpha}{2}.
+\]
+\ans{$\displaystyle\V{AD}=\frac{\alpha+\beta}{2},\quad \V{BE}=\frac{\beta}{2}-\alpha,\quad \V{CF}=\frac{\alpha}{2}-\beta.$ 与书后答案一致。}
+\tip{\textbf{附加检验：}三条中线方向向量相加为零，即 $\V{AD}+\V{BE}+\V{CF}=\bm 0$。}
+
+\probnext{4}{梯形中点向量与反求}
+\textbf{题意。} 梯形满足 $\V{AB}=2\V{DC}$，$E$ 为 $BC$ 中点、$F$ 为 $CD$ 中点。先用 $\V{AB},\V{AD}$ 表达 $\V{AE},\V{AF}$，再反求 $\V{AB},\V{BC},\V{BD},\V{AC}$。
+\idea{正向先设 $\bm a=\V{AB},\bm d=\V{AD}$；反向再把 $\bm a,\bm d$ 视为未知量解线性方程。}
+由 $\V{DC}=\bm a/2$，以 $A$ 为原点时
+\[
+B=\bm a,\quad D=\bm d,\quad C=\bm d+\tfrac12\bm a.
+\]
+由中点公式
+\begin{align*}
+\V{AE}&=\tfrac12(B+C)=\tfrac34\bm a+\tfrac12\bm d,\\
+\V{AF}&=\tfrac12(C+D)=\tfrac14\bm a+\bm d.
+\end{align*}
+设 $\bm e=\V{AE}$、$\bm f=\V{AF}$。把第一式乘 $2$、第二式乘 $-1$ 相加，得
+\[
+2\bm e-\bm f=\tfrac54\bm a,\qquad \bm a=\tfrac45(2\bm e-\bm f).
+\]
+进一步 $\bm d=\bm f-\bm a/4=\frac65\bm f-\frac25\bm e$。因此
+\begin{align*}
+\V{AB}&=\bm a=\tfrac45(2\bm e-\bm f),\\
+\V{AC}&=\bm d+\tfrac12\bm a=\tfrac25(\bm e+2\bm f),\\
+\V{BC}&=\V{AC}-\V{AB}=\tfrac25(4\bm f-3\bm e),\\
+\V{BD}&=\bm d-\bm a=2(\bm f-\bm e).
+\end{align*}
+\ans{上面四个反求式均与书后答案一致。}
+\tip{\textbf{方法总结：}「先正推、再消元」比套记忆公式可靠。为防漏题，反求阶段应检查题目要求的四个向量是否\textbf{全部}列出。}
+
+\probnext{5}{原题与书后答案的符号矛盾}
+\textbf{题意。} 六边形 $ABCDEF$ 三组对边分别平行；扫描原题印为
+\[
+\V{FC}=2\V{AB}=2\V{DE},\qquad\V{AB}=\alpha,\quad\V{BC}=\beta,
+\]
+求 $\V{CE},\V{CD}$。书后却写 $\V{CD}=\beta-\alpha,\ \V{CE}=\beta-2\alpha$。
+\warning{\textbf{可直接证伪。} 从书后两式可得 $\V{DE}=\V{CE}-\V{CD}=-\alpha$，而原题要求 $\V{DE}=\alpha$。在 $\alpha\ne\bm0$ 的非退化六边形中，两者无法同时成立。}
+\textbf{第一种：按原书答案推测的修正版。} 将题设中的 $\V{DE}=\alpha$ 改为 $\V{ED}=\alpha$，即 $\V{DE}=-\alpha$；保留 $\V{FC}=2\alpha$。
+以 $A$ 为原点，设 $A=0,B=\alpha,C=\alpha+\beta$。由 $\V{FC}=2\alpha$，
+\[
+F=C-2\alpha=\beta-\alpha.
+\]
+因为 $EF\parallel BC$，可写 $E=F+t\beta= -\alpha+(1+t)\beta$；又 $\V{DE}=-\alpha$，即 $D=E+\alpha=(1+t)\beta$。
+于是 $\V{CD}=D-C=-\alpha+t\beta$。利用 $CD\parallel FA$，而 $\V{FA}=\alpha-\beta$，比较 $\alpha,\beta$ 的独立系数，得 $t=1$。所以
+\[
+\boxed{\V{CD}=\beta-\alpha,\qquad \V{CE}=\beta-2\alpha.}
+\]
+\textbf{第二种：严格保留扫描题设的方向。} 若只按向量方程代数计算，$\V{DE}=\alpha$，其余条件不变，则
+\[
+E=-\alpha+(1+t)\beta,\qquad D=-2\alpha+(1+t)\beta,
+\]
+$\V{CD}=-3\alpha+t\beta\parallel\alpha-\beta$ 导出 $t=3$，从而
+\[
+\boxed{\V{CD}=3(\beta-\alpha),\qquad\V{CE}=3\beta-2\alpha.}
+\]
+这组向量可满足闭合折线的代数平行条件，却形成自交的六边形折线，不符合一般教材中简单六边形的几何图形要求。
+\ans{扫描题设\textbf{与书后答案不一致}，不是计算失误。若要得到原书答案，需要反向改写 $\V{DE}$，即改作 $\V{ED}=\alpha$；公开发布时请写作「疑似原题笔误」，勿未经校勘擅改原书。}
+
+\probnext{6}{两段中点连线恒等式}
+\textbf{题意。} $P,Q$ 分别为任意线段 $AB,CD$ 的中点，证 $2\V{PQ}=\V{AC}+\V{BD}$。
+\idea{以同一参考点 $O$ 表示所有位置向量；中点意味着平均。}
+\begin{align*}
+2\V{OP}&=\V{OA}+\V{OB},\\
+2\V{OQ}&=\V{OC}+\V{OD}.
+\end{align*}
+相减得到
+\begin{align*}
+2\V{PQ}&=2(\V{OQ}-\V{OP})\\
+&=(\V{OC}-\V{OA})+(\V{OD}-\V{OB})\\
+&=\V{AC}+\V{BD}.
+\end{align*}
+\ans{恒等式成立，不需要 $A,B,C,D$ 共面。}
+\tip{\textbf{推广：}两组任意数量相同的点，其重心之差等于对应位置向量差的平均值；本题是每组两个点的特例。}
+
+\probnext{7}{任意有限点组的重心存在唯一}
+\textbf{题意。} 给定 $n\ge1$ 个点 $A_1,\ldots,A_n$，证明唯一存在 $M$ 使 $\sum_{i=1}^n\V{MA_i}=0$，并求重心位置向量。
+\idea{先任取原点 $O$，把每个 $\V{MA_i}$ 写成 $\V{OA_i}-\V{OM}$。}
+由向量加法
+\[
+\sum_{i=1}^n\V{MA_i}=\sum_{i=1}^n\V{OA_i}-n\V{OM}.
+\]
+所以重心条件等价于
+\[
+\boxed{\V{OM}=\frac1n\sum_{i=1}^n\V{OA_i}.}
+\]
+右侧是一个确定向量，故对应唯一点 $M$；代回原条件即得存在性。若任选点 $P$，又可写为
+\[
+\V{PM}=\frac1n\sum_{i=1}^n\V{PA_i}.
+\]
+\ans{$M$ 必存在且唯一。公式与书后第 7 题提示一致。}
+\tip{\textbf{易错：}重心不要求位于顶点构成的简单多边形内部；但它属于这些点的凸包。}
+
+\probnext{8}{四点重心是两中点连线的中点}
+\textbf{题意。} $P,Q$ 分别为 $AB,CD$ 中点，证明 $PQ$ 中点 $M$ 是四点 $A,B,C,D$ 的重心。
+\idea{连续做两次「取平均」。}
+对任意原点 $O$，
+\[
+\V{OP}=\frac{\V{OA}+\V{OB}}2,\qquad
+\V{OQ}=\frac{\V{OC}+\V{OD}}2.
+\]
+又 $M$ 为 $PQ$ 中点，故
+\[
+\V{OM}=\frac{\V{OP}+\V{OQ}}2
+=\frac{\V{OA}+\V{OB}+\V{OC}+\V{OD}}4.
+\]
+由上一题重心的唯一性，$M$ 就是所求重心。
+\ans{成立；四点无须共面或形成特殊四边形。}
+
+\probnext{9}{四面体三组对棱中点连线}
+\textbf{题意。} 四面体的每组对棱各取中点，连接这两个中点。证明三条连线交于同一点，且该点为四顶点重心。
+\idea{依第 8 题，每组对棱取中点后，两中点连线的\textbf{中点}就是相同的四点重心。}
+四面体 $ABCD$ 的三组对棱是 $(AB,CD)$、$(AC,BD)$、$(AD,BC)$。不论选择哪一组，由第 8 题所得中点 $M$ 的位置向量都为
+\[
+\V{OM}=\tfrac14(\V{OA}+\V{OB}+\V{OC}+\V{OD}).
+\]
+因此三条线段均经过同一点 $M$，并被 $M$ 平分。
+\ans{三组对棱中点连线在四面体重心相交，且相交点平分每条线段。}
+
+\probnext{10}{三角形重心与三条中线}
+\textbf{题意。} 证明 $A,B,C$ 三点的重心处在三条中线上。
+\idea{证明重心和一个顶点、对边中点可构成共线关系，再轮换顶点。}
+设 $D$ 为 $BC$ 中点，$G$ 为三个顶点的重心，则
+\begin{align*}
+\V{OG}&=\frac{\V{OA}+\V{OB}+\V{OC}}3\\
+&=\frac{\V{OA}+2\V{OD}}3
+=\V{OA}+\frac23\V{AD}.
+\end{align*}
+所以 $\V{AG}=\frac23\V{AD}$，即 $G$ 在中线 $AD$ 上并满足 $AG:GD=2:1$。对 $BE,CF$ 重复同一推导，得到它们也都经过 $G$。
+\ans{三条中线共点于三个顶点的重心，重心将每条中线按 $2:1$ 分割（靠近顶点的一段为 $2$）。}
+
+\probnext{11}{正多边形中心即各顶点重心}
+\textbf{题意。} 证明正 $n$ 边形的对称中心 $O$ 是其 $n$ 个顶点的重心。
+\idea{利用中心旋转会将顶点集合循环置换，顶点位置向量的和在该旋转下保持不变。}
+设 $S=\sum_{i=1}^n\V{OA_i}$。绕 $O$ 旋转 $2\pi/n$ 记为线性变换 $R$，则
+\[
+R(S)=\sum_{i=1}^n R(\V{OA_i})=\sum_{i=1}^n\V{OA_{i+1}}=S.
+\]
+由于 $n\ge3$ 时旋转角不是 $2\pi$ 的整数倍，平面中只有零向量在这个旋转下不变，所以 $S=0$。于是 $\sum\V{OA_i}=0$，按第 7 题的定义，$O$ 是顶点重心。
+\ans{正 $n$ 边形的中心为顶点重心。}
+\tip{\textbf{另一种直观证明：}若 $n$ 为偶数，对顶点位置向量两两抵消；若 $n$ 为奇数，用上述旋转不变性更加统一。}
+
+\probnext{12}{三个点的重心与另外两个点的重心}
+\textbf{题意。} $M$ 为 $A_1,A_2,A_3$ 的重心，$N$ 为 $A_4,A_5$ 的重心，求全部五点重心 $G$（原题为作图）。
+\idea{重心合并时要按\textbf{各组点数加权}，不能简单取 $MN$ 中点。}
+\[
+3\V{OM}=\sum_{i=1}^3\V{OA_i},\qquad2\V{ON}=\V{OA_4}+\V{OA_5}.
+\]
+因此
+\[
+\V{OG}=\frac{3\V{OM}+2\V{ON}}5
+=\V{OM}+\frac25\V{MN}.
+\]
+\ans{$G$ 在 $MN$ 上，$MG:GN=2:3$；若 $M=N$，则 $G=M=N$。}
+\textbf{作图步骤：}作线段 $MN$；由 $M$ 发出辅助射线并等距截取 $5$ 段，连接第 $5$ 个分点与 $N$；过第 $2$ 个分点作平行线交 $MN$ 于 $G$，由相似三角形得到 $MG/MN=2/5$。
+
+\probnext{13}{六点与五点重心的构造}
+\textbf{题意。} 分别作给定六个点与五个点的重心。
+\idea{分组求重心，再把组重心按点数加权合并。}
+\textbf{(1) 六点。} 作 $A_1,A_2,A_3$ 的重心 $M$，作 $A_4,A_5,A_6$ 的重心 $N$。因为两组各有三点，六点重心 $G$ 即 $MN$ 的中点：
+\[
+\V{OG}=\frac{3\V{OM}+3\V{ON}}6=\frac{\V{OM}+\V{ON}}2.
+\]
+\textbf{(2) 五点。} 同样先作前三点重心 $M$，后两点的中点 $N$，再按照第 12 题构造 $MG:GN=2:3$ 的分点 $G$。
+\ans{六点用「三点＋三点」分组并取中点；五点用「三点＋两点」分组并以 $2:3$ 内分。}
+\tip{\textbf{作图基础：}非退化三角形的重心由两条中线交点得到；三点若共线，可先取两点中点，再作第三点到该中点的 $2:1$ 内分点。线段有理数内分可用平行线截比法完成。}
+
+\probnext{14}{一一对应下的向量和与配对无关}
+\textbf{题意。} 两组各 $n$ 个点 $\{A_i\}$、$\{B_i\}$ 建立任意一一对应 $f$，证明 $\sum\V{A_i f(A_i)}$ 与 $f$ 无关。
+\idea{把每一对连线改写为同一原点下「终点位置向量减起点位置向量」。}
+任取原点 $O$，由首尾相接，
+\[
+\V{A_i f(A_i)}=\V{Of(A_i)}-\V{OA_i}.
+\]
+两边求和：
+\[
+\sum_{i=1}^n\V{A_i f(A_i)}
+=\underbrace{\sum_{i=1}^n\V{Of(A_i)}}_{\sum_{j=1}^n\V{OB_j}}
+-\sum_{i=1}^n\V{OA_i}.
+\]
+因为 $f$ 为一一对应，每个 $B_j$ 恰好出现一次，所以结果与配对顺序无关。
+\ans{$\displaystyle\sum_i\V{A_i f(A_i)}=n\V{G_A G_B}$，其中 $G_A,G_B$ 分别为两点组的重心。与书后提示一致。}
+
+\probnext{15}{三点共线的仿射线性相关判据}
+\textbf{题意。} 证明 $A,B,C$ 共线，当且仅当存在不全为零的 $\lambda,\mu,\nu$，满足
+\[
+\lambda+\mu+\nu=0,\qquad
+\lambda\V{OA}+\mu\V{OB}+\nu\V{OC}=0.
+\]
+\idea{先利用第一式消去一个未知系数，转成 $\V{AB}$ 与 $\V{AC}$ 的线性相关。}
+由 $\lambda=-\mu-\nu$，第二式等价于
+\[
+\mu(\V{OB}-\V{OA})+\nu(\V{OC}-\V{OA})=0,
+\quad\text{即}\quad\mu\V{AB}+\nu\V{AC}=0.
+\]
+因为 $\lambda+\mu+\nu=0$，不全为零的三系数必令 $(\mu,\nu)$ 不全为零。两向量线性相关等价于它们共线，故等价于 $A,B,C$ 共线。反向从共线推出两向量线性相关，再令 $\lambda=-\mu-\nu$ 即可。
+\ans{充要性均得证；判断的是\textbf{仿射相关}而不只是三个位置向量的通常线性相关。}
+
+\probnext{16}{空间点落在平面内的系数和}
+\textbf{题意。} $O,A,B,C$ 不共面，令 $\V{OD}=\lambda\V{OA}+\mu\V{OB}+\nu\V{OC}$。证明 $D\in(ABC)$ 当且仅当 $\lambda+\mu+\nu=1$。
+\idea{从平面上任意点的参数式出发，给出充分性与必要性。}
+$A,B,C$ 不共线，平面 $(ABC)$ 上的点恰能写成
+\[
+\V{OD}=\V{OA}+s\V{AB}+t\V{AC}
+=(1-s-t)\V{OA}+s\V{OB}+t\V{OC}.
+\]
+故在此平面内必有系数和 $1$。反过来，若 $\lambda+\mu+\nu=1$，则
+\[
+\V{OD}=\V{OA}+\mu\V{AB}+\nu\V{AC},
+\]
+所以 $D$ 属于平面 $(ABC)$。又因 $O,A,B,C$ 不共面，$\V{OA},\V{OB},\V{OC}$ 是一组基，系数分解唯一。
+\ans{$D\in(ABC)\iff\lambda+\mu+\nu=1$。}
+\tip{\textbf{辨析：}系数和为 $1$ 是\textbf{仿射组合}的特征；系数是否非负决定点是否位于三角形区域内部（含边界），不是仅属于整张平面的条件。}
+
+\probnext{17}{四点共面的仿射相关判据}
+\textbf{题意。} 证明 $A,B,C,D$ 共面，当且仅当存在不全为零的 $\lambda,\mu,\nu,\omega$，其和为零并使对应四个位置向量的线性组合为零。
+\idea{指定 $D$ 为参考点，四点共面转化为 $\V{DA},\V{DB},\V{DC}$ 线性相关。}
+设 $\lambda+\mu+\nu+\omega=0$。则
+\begin{align*}
+&\lambda\V{OA}+\mu\V{OB}+\nu\V{OC}+\omega\V{OD}\\
+&\quad=\lambda\V{DA}+\mu\V{DB}+\nu\V{DC}.
+\end{align*}
+如果右侧为零且系数不全为零，则 $\lambda,\mu,\nu$ 不全为零（否则 $\omega=0$），故从 $D$ 引出的三个向量线性相关，四点共面。反之，四点共面意味着三个向量线性相关，可选择非全零的 $\lambda,\mu,\nu$ 使其线性组合为零，再令 $\omega=-(\lambda+\mu+\nu)$，即得到题设形式。
+\ans{所给条件是四点共面的充要条件，即四个点的仿射相关判据。}
+
+\probnext{18}{有向分比的两条恒等式}
+\textbf{题意。} $A,B,C$ 为共线不同点，证
+\[
+\Ra{A}{B}{C}\Ra{B}{A}{C}=1,\qquad
+\Ra{A}{B}{C}+\Ra{A}{C}{B}=-1.
+\]
+\idea{将直线上 $A,B$ 的有向坐标设为 $0,1$，再设 $C$ 的坐标为 $t$。}
+由于三个点两两不同，有 $t\notin\{0,1\}$。根据式 \eqref{eq:ratio} 的有向分比定义，
+\[
+\Ra{A}{B}{C}=\frac{t}{1-t},\qquad
+\Ra{B}{A}{C}=\frac{1-t}{t},\qquad
+\Ra{A}{C}{B}=\frac{1}{t-1}.
+\]
+第一个乘积显然是 $1$；第二个和为
+\[
+\frac{t}{1-t}+\frac{1}{t-1}
+=\frac{t-1}{1-t}=-1.
+\]
+\ans{两式均成立；务必使用有向分比，而非全部取绝对值的长度比。}
+
+\probnext{19}{三角形截线交点的两个分比}
+\textbf{题意。} $D\in BC,E\in CA,F\in AB$ 且 $\Ra{A}{B}{F}=2$、$\Ra{A}{C}{E}=1/2$、$\Ra{B}{C}{D}=1/3$。令 $G=AD\cap EF$，求 $\Ra{E}{F}{G}$、$\Ra{A}{D}{G}$。
+\idea{仿射分比在非退化仿射坐标下不变；取最简单的三角形 $A=(0,0),B=(1,0),C=(0,1)$。}
+由 $t=r/(1+r)$，得
+\[
+F=(\tfrac23,0),\qquad E=(0,\tfrac13),\qquad D=(\tfrac34,\tfrac14).
+\]
+因为 $G$ 同时在 $AD$ 与 $EF$ 上，可以设
+\[
+G=tD=E+u(F-E).
+\]
+比较两个坐标：
+\[
+\frac{3t}{4}=\frac{2u}{3},\qquad
+\frac{t}{4}=\frac{1-u}{3}.
+\]
+第一式给出 $u=9t/8$，代入第二式得 $3t/4=1-9t/8$，所以
+\[
+t=\frac8{15},\qquad u=\frac35.
+\]
+因此 $\Ra{E}{F}{G}=u/(1-u)=3/2$，$\Ra{A}{D}{G}=t/(1-t)=8/7$。
+\ans{$\displaystyle\Ra{E}{F}{G}=\frac32,\qquad\Ra{A}{D}{G}=\frac87$。与书后答案一致。}
+\tip{\textbf{注意：}数值 $8/15$ 是 $AG/AD$，题目所问 $\Ra{A}{D}{G}$ 是 $AG/GD=8/7$，不能直接把参数当答案。}
+
+\probnext{20}{三条线共点后的有向分比}
+\textbf{题意。} $D\in BC,E\in CA,F\in AB$，三线 $AD,BE,CF$ 交于 $O$。已知 $\Ra{A}{B}{F}=1/3$、$\Ra{C}{F}{O}=2$，求 $\Ra{A}{D}{O}$、$\Ra{B}{C}{D}$、$\Ra{C}{A}{E}$、$\Ra{B}{E}{O}$。
+\idea{先求 $F$ 再求 $O$；接着利用两条直线定位 $D,E$，最后求四个分比。}
+仍取 $A=(0,0),B=(1,0),C=(0,1)$。第一条件给出 $AF/AB=\frac{1/3}{1+1/3}=1/4$，故 $F=(1/4,0)$。
+由 $\Ra{C}{F}{O}=2$，知 $CO/CF=2/3$，所以
+\[
+O=C+\tfrac23(F-C)=(\tfrac16,\tfrac13).
+\]
+设 $D=(1-p,p)$ 在 $BC$ 上，而 $O=sD$ 位于 $AD$，比较坐标得
+\[
+s(1-p)=\tfrac16,\qquad sp=\tfrac13
+\quad\Longrightarrow\quad s=\tfrac12,\ p=\tfrac23.
+\]
+于是 $\Ra{A}{D}{O}=s/(1-s)=1$，$\Ra{B}{C}{D}=p/(1-p)=2$。
+再令 $E=(0,e)$、$O=B+w(E-B)$，则
+\[
+1-w=\tfrac16,\qquad we=\tfrac13
+\quad\Longrightarrow\quad w=\tfrac56,\ e=\tfrac25.
+\]
+因此 $CE/EA=(1-e)/e=3/2$，而 $BO/OE=w/(1-w)=5$。
+\ans{$\displaystyle\Ra{A}{D}{O}=1,\quad \Ra{B}{C}{D}=2,\quad \Ra{C}{A}{E}=\frac32,\quad \Ra{B}{E}{O}=5$。与书后答案一致。}
+
+\probnext{21}{三点仿射分解与边上分点}
+\textbf{题意。} $E\in BC$、$D\in AE$，且
+\[
+\V{OD}=\lambda\V{OA}+\mu\V{OB}+\nu\V{OC},\qquad
+\lambda+\mu+\nu=1,
+\]
+$O$ 不在三角形所在平面。求 $\Ra{A}{E}{D}$ 和 $\Ra{B}{C}{E}$。
+\idea{先把 $B,C$ 的位置向量合并成 $E$；再将 $D$ 写成 $A,E$ 的线性内分式。}
+在 $\mu+\nu\neq0$ 时，写
+\[
+\V{OE}=\frac{\mu\V{OB}+\nu\V{OC}}{\mu+\nu}
+\qquad\Longrightarrow\qquad
+\V{OD}=\lambda\V{OA}+(\mu+\nu)\V{OE}.
+\]
+因为 $\lambda+(\mu+\nu)=1$，故 $AD/DE=(\mu+\nu)/\lambda$；同理 $BE/EC=\nu/\mu$。
+\ans{$\displaystyle\Ra{A}{E}{D}=\frac{\mu+\nu}{\lambda},\qquad \Ra{B}{C}{E}=\frac{\nu}{\mu}$，非退化情况下与书后答案一致。}
+\warning{\textbf{端点限制：}当 $D=E$ 时 $\lambda=0$，第一比值分母为零；当 $E=C$ 时 $\mu=0$，第二比值分母为零；当 $D=A$ 时，$E$ 无法由 $D$ 的分解唯一确定。本题分式答案默认为相应比值有定义。}
+
+\probnext{22}{Ceva 定理：内点成立，延长线须防平行}
+\textbf{题意。} $D\in AB,E\in BC,F\in CA$，记
+\[
+\lambda=\Ra{A}{B}{D},\qquad
+\mu=\Ra{B}{C}{E},\qquad
+\nu=\Ra{C}{A}{F}.
+\]
+(1) 三点在边的内点时，证 $AE,BF,CD$ 共点当且仅当 $\lambda\mu\nu=1$；(2) 若扩展到三边所在直线，结论是否仍无条件成立？
+\idea{把公共交点写作三角形的仿射重心坐标，分别比较三条线的系数比。}
+\textbf{(1) 必要性。} 若三线交于内部点 $X$，可唯一写作
+\[
+X=xA+yB+zC,\quad x+y+z=1,\quad x,y,z>0.
+\]
+由于 $X\in CD$，其 $A,B$ 方向系数之比为 $y/x=AD/DB=\lambda$；
+由于 $X\in AE$，有 $z/y=BE/EC=\mu$；由于 $X\in BF$，有 $x/z=CF/FA=\nu$。
+三式相乘得到
+\[
+\lambda\mu\nu=\frac yx\cdot\frac zy\cdot\frac xz=1.
+\]
+\textbf{(1) 充分性。} 若 $\lambda,\mu,\nu>0$ 且 $\lambda\mu\nu=1$，取
+\[
+X=\frac{A+\lambda B+\lambda\mu C}{1+\lambda+\lambda\mu}.
+\]
+这是三角形内部的仿射组合，其系数满足 $y/x=\lambda$、$z/y=\mu$、$x/z=\nu$；因此 $X$ 同时在 $CD,AE,BF$，充分性得证。
+
+\textbf{(2) 反例：三条线平行。} 在直角坐标平面取
+\[
+A=(0,0),\ B=(1,0),\ C=(0,1),\quad
+D=(2,0),\ E=(2,-1),\ F=(0,\tfrac12).
+\]
+则
+\[
+\lambda=-2,\quad \mu=-\tfrac12,\quad\nu=1,
+\qquad \lambda\mu\nu=1.
+\]
+然而 $\V{AE}=(2,-1)$、$\V{BF}=(-1,\tfrac12)$、$\V{CD}=(2,-1)$，三线\textbf{互相平行且彼此不同}，在欧氏平面内没有公共点。
+\begin{center}
+\begin{tikzpicture}[scale=0.80,>=Stealth]
+\coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (0,2);
+\coordinate (D) at (4,0); \coordinate (E) at (4,-2); \coordinate (F) at (0,1);
+\draw[very thick,navy] (A)--(B)--(C)--cycle;
+\draw[densely dashed,gray] (B)--(D) (B)--(E);
+\draw[thick,blue] (-0.6,0.3)--(4.5,-2.25);
+\draw[thick,teal] (-0.3,1.15)--(4.5,-1.25);
+\draw[thick,amber] (-0.5,2.25)--(4.5,-0.25);
+\foreach \p/\pos in {A/below left,B/below,C/above left,D/above,E/right,F/left}{\fill (\p) circle(2.2pt) node[\pos] {$\p$};}
+\node[font=\small,anchor=west] at (4.7,1.1) {示意：三条延长线平行};
+\end{tikzpicture}
+\end{center}
+\ans{(1) 内点版本成立。(2) 无条件延长线版本\textbf{不成立}：$\lambda\mu\nu=1$ 时可能「共点」，也可能「三线互相平行」。需补充排除平行情形。}
+\warning{\textbf{拓展定理：}有向比乘积为 $1$ 等价于三条线在\textbf{射影平面}共点；其中平行线在无穷远点相交。普通欧氏几何中的「交于一点」不含无穷远点。}
+
+\probnext{23}{Menelaus 定理的坐标证明}
+\textbf{题意。} $A,B,C$ 不共线，$P\in AB,Q\in BC,R\in CA$ 且三点均不是原三角形顶点。令
+\[
+\lambda=\Ra{A}{B}{P},\quad\mu=\Ra{B}{C}{Q},\quad\nu=\Ra{C}{A}{R}.
+\]
+证 $P,Q,R$ 共线当且仅当 $\lambda\mu\nu=-1$。
+\idea{选仿射坐标 $A=(0,0),B=(1,0),C=(0,1)$，把三点共线条件转成三阶行列式为零。}
+设
+\[
+P=(p,0),\quad Q=(1-q,q),\quad R=(0,1-r),
+\]
+其中 $p,q,r\notin\{0,1\}$，因为 $P,Q,R$ 均不是顶点。按有向分比定义，
+\[
+\lambda=\frac p{1-p},\qquad\mu=\frac q{1-q},\qquad\nu=\frac r{1-r}.
+\]
+$P,Q,R$ 共线的充要条件为
+\begin{align*}
+0&=\begin{vmatrix}p&0&1\\1-q&q&1\\0&1-r&1\end{vmatrix}\\
+&=1-p-q-r+pq+pr+qr\\
+&=pqr+(1-p)(1-q)(1-r).
+\end{align*}
+由于三个分母均不为零，上式等价于
+\[
+\frac{pqr}{(1-p)(1-q)(1-r)}=-1
+\quad\Longleftrightarrow\quad\boxed{\lambda\mu\nu=-1}.
+\]
+\ans{Menelaus 定理的充要性均得证。由于分比带符号，乘积是 $-1$；若只使用长度比，则须另行讨论奇数个外分点的情况。}
+\tip{\textbf{关联记忆：}三角形三条顶点连线的共点判据是 Ceva 的 $+1$；一条直线截三条边所在直线的共线判据是 Menelaus 的 $-1$。这不是死记符号，应通过分比的方向定义理解。}
+

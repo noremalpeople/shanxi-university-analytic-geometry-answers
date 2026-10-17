@@ -1,0 +1,12 @@
+# Local LaTeX build intermediates (published PDFs stay in dist/)
+chapters/*/build/
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+__pycache__/
+*.pyc
+.DS_Store

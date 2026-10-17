@@ -1,0 +1,210 @@
+\section{习题 1.3：向量的内积}\label{sec:13}
+\sectionlead{14}{33--34}{301}{内积题首先转化为长度平方、夹角余弦与正交条件。证明题优先展开平方并用内积的双线性，数值题多设置向量从同一顶点出发。}
+\begin{tcolorbox}[colback=white,colframe=rulegray,boxrule=0.4pt,arc=1.5mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
+\concepttitle{图形理解 1.3：内积最常见的图像就是“投影”}
+\begin{center}
+\begin{tikzpicture}[scale=1.0,>=Stealth]
+\coordinate (O) at (0,0);
+\coordinate (B) at (5,0.8);
+\coordinate (A) at (3.2,2.5);
+\coordinate (H) at ($(O)!(A)!(B)$);
+\draw[->,thick] (O)--(B) node[below right]{$\beta$};
+\draw[->,thick,blue] (O)--(A) node[above]{$\alpha$};
+\draw[dashed] (A)--(H);
+\draw[->,teal,very thick] (O)--(H) node[midway,below]{$\mathrm{proj}_{\beta}\alpha$};
+\fill (O) circle(1.4pt) node[below left]{$O$};
+\fill (A) circle(1.4pt);
+\fill (H) circle(1.4pt) node[below]{$H$};
+\draw ($(H)+(0,0.18)$)--($(H)+(0,0.18)+(-0.18,0.05)$)--($(H)+(-0.18,0.05)$);
+\node at (5.7,2.2) {$\alpha\cdot\beta=|\alpha|\,|\beta|\cos\theta$};
+\node at (5.8,1.45) {投影长度 $=\dfrac{\alpha\cdot\beta}{|\beta|}$};
+\end{tikzpicture}
+\end{center}
+\figcaptiontxt{把“夹角”“正交”“长度平方”都转成投影图去看，会明显减少公式记忆负担。}
+\end{tcolorbox}
+
+\Q{1}{由两向量长度和夹角求组合向量}
+\textbf{题意概述：}$|\alpha|=3$、$|\beta|=2$、$\angle(\alpha,\beta)=\pi/3$；求 $3\alpha+2\beta$、$2\alpha-5\beta$ 的长度及内积。
+\idea{先算一次 $\alpha\cdot\beta=3\cdot2\cos(\pi/3)=3$，所有式子都可按分配律求值。}
+\begin{align*}
+|3\alpha+2\beta|^2&=9\cdot9+12\cdot3+4\cdot4=133,\\
+|2\alpha-5\beta|^2&=4\cdot9-20\cdot3+25\cdot4=76,\\
+(3\alpha+2\beta)\cdot(2\alpha-5\beta)
+&=6\cdot9-11\cdot3-10\cdot4=-19.
+\end{align*}
+\ans{$\sqrt{133}$、$2\sqrt{19}$，内积 $-19$。与书后答案一致。}
+\tip{最后一式的混合系数是 $-15+4=-11$，不能把两条混合项忘掉。}
+
+\Q{2}{四面体：中点与重心的长度和内积}
+\textbf{题意概述：}$|AB|=|AC|=2, |AD|=1$，$\angle BAC=\angle BAD=\pi/3$、$\angle CAD=\pi/6$；$P$ 为 $BC$ 中点，$Q$ 为 $BCD$ 重心。求 $AP,AQ,\V{AP}\cdot\V{AQ}$。
+\idea{设 $u=\V{AB},v=\V{AC},w=\V{AD}$，先列全部已知内积。}
+\[
+u^2=v^2=4,\quad w^2=1,\quad u\cdot v=2,\quad u\cdot w=1,\quad v\cdot w=\sqrt3.
+\]
+由于 $P,Q$ 是仿射平均点，
+\[
+\V{AP}=\frac{u+v}{2},\qquad \V{AQ}=\frac{u+v+w}{3}.
+\]
+因此
+\begin{align*}
+AP^2&=\tfrac14(u^2+2u\cdot v+v^2)=3,\\
+AQ^2&=\tfrac19(u^2+v^2+w^2+2u\cdot v+2u\cdot w+2v\cdot w)
+=\tfrac{15+2\sqrt3}{9},\\
+\V{AP}\cdot\V{AQ}&=\tfrac16(u+v)\cdot(u+v+w)=\tfrac{13+\sqrt3}{6}.
+\end{align*}
+\ans{$AP=\sqrt3$，$AQ=\sqrt{15+2\sqrt3}/3$，$\V{AP}\cdot\V{AQ}=(13+\sqrt3)/6$。原书一致。}
+
+\Q{3}{用分比表示三角形边上点的长度}
+\textbf{题意概述：}三角形中 $\angle A=45^\circ$，$AB=3$、$AC=2$，$D\in BC$ 满足 $(B,C,D)=2$，求 $AD$。
+\idea{由分比得 $\V{AD}=(\V{AB}+2\V{AC})/3$，再算长度平方。}
+设 $u=\V{AB}$、$v=\V{AC}$，则 $u^2=9,v^2=4,u\cdot v=3\sqrt2$。
+\[
+AD^2=\frac{|u+2v|^2}{9}=
+\frac{9+4\cdot4+4\cdot3\sqrt2}{9}=\frac{25+12\sqrt2}{9}.
+\]
+\ans{$\displaystyle AD=\frac{\sqrt{25+12\sqrt2}}{3}$。原书一致。}
+\tip{有向分比 2 对应 $BD:DC=2:1$，所以更靠近 $C$；平均时 $C$ 的权重应为 2。}
+
+\Q{4}{向量投影：标量与向量不要混淆}
+\textbf{题意概述：}在平面直角坐标系，$\alpha=(-1,2)$、$\beta=(1,1)$，求 $\alpha$ 在 $\beta$ 方向的内投影与垂直分量。
+\idea{沿 $\beta$ 的向量投影为 $p=\frac{\alpha\cdot\beta}{|\beta|^2}\beta$，正交分量为 $\alpha-p$。}
+\[
+\alpha\cdot\beta=1,\quad |\beta|^2=2,\quad p=\frac12(1,1).
+\]
+\[
+\alpha-p=(-1,2)-(1/2,1/2)=(-3/2,3/2).
+\]
+\ans{沿方向的\textbf{向量投影}为 $(1/2,1/2)$；垂直分量为 $(-3/2,3/2)$，与书后答案一致。}
+\tip{若题目仅问\emph{标量投影}，应为 $\alpha\cdot\beta/|\beta|=1/\sqrt2$；本题原书答案使用向量坐标。}
+
+\Q{5}{分解为某平面内分量和垂直分量}
+\textbf{题意概述：}$\alpha=(1,0,2)$，$\beta=(1,1,1)$、$\gamma=(1,0,-2)$；把 $\alpha$ 分成平面 $\mathrm{span}\{\beta,\gamma\}$ 中的 $\alpha_1$ 和垂直平面的 $\alpha_2$。
+\idea{先找平面法向量 $n=\beta\times\gamma=(-2,3,-1)$；用投影公式取法向部分。}
+\[
+\alpha\cdot n=-4,\qquad n^2=14,\qquad
+\alpha_2=\frac{-4}{14}n=\left(\frac47,-\frac67,\frac27\right).
+\]
+进而 $\alpha_1=\alpha-\alpha_2=(3/7,6/7,12/7)$。检查
+\[
+\alpha_1\cdot n=0,\quad \alpha_2\cdot\beta=\alpha_2\cdot\gamma=0,\quad \alpha_1+\alpha_2=\alpha.
+\]
+\ans{$\alpha_1=(3/7,6/7,12/7)$、$\alpha_2=(4/7,-6/7,2/7)$。与书后答案一致。}
+
+\Q{6}{内积常见等式的成立条件}
+\textbf{题意概述：}逐项判断下式何时成立：
+(1) $|\alpha^2|=|\alpha|^2$；
+(2) $\alpha(\alpha\cdot\beta)=\alpha^2\beta$；
+(3) $(\alpha\cdot\beta)^2=\alpha^2\beta^2$；
+(4) $(\alpha\cdot\beta)\gamma=\alpha(\beta\cdot\gamma)$。
+\idea{始终把 $\alpha^2$ 理解成 $\alpha\cdot\alpha$；使用柯西--施瓦茨等号条件。}
+\begin{enumerate}
+\item $\alpha^2=|\alpha|^2\ge 0$，所以 (1) 对一切向量成立。
+\item (2) 对任意 $\alpha\neq0$，两边相等当且仅当 $\beta$ 在 $\alpha$ 的方向上；$\alpha=0$ 时自动成立。统一表述为 $\alpha,\beta$ 线性相关。
+\item (3) 是柯西--施瓦茨等号条件，$\alpha,\beta$ 线性相关时成立。
+\item (4) 若 $\alpha,\gamma$ 线性相关则成立；这正是书后给出的一个充分条件。此外当 $\beta$ 同时垂直于 $\alpha$ 和 $\gamma$ 时两边也都为零，故\textbf{不必然只在平行时成立}。
+\end{enumerate}
+\ans{结论与书后建议的附加条件一致；(4) 特别补充了容易漏掉的零系数情形。}
+
+\Q{7}{单个方向的投影不能确定向量}
+\textbf{题意概述：}已知非零 $\gamma$ 且 $\alpha\cdot\gamma=\beta\cdot\gamma$，能否得 $\alpha=\beta$？
+\idea{条件只有 $(\alpha-\beta)\cdot\gamma=0$，只能说明差向量垂直 $\gamma$。}
+取 $\gamma=(0,0,1)$，$\alpha=(1,0,0)$、$\beta=(0,1,0)$，则两个内积都为零，却有 $\alpha\neq\beta$。
+\ans{不能，书后简答一致。}
+\tip{只测量沿一条方向的投影，无法确定三维向量的全部三个分量。}
+
+\Q{8}{平面内同时正交于两个不平行向量}
+\textbf{题意概述：}$\alpha,\beta,\gamma$ 共面且 $\alpha,\beta$ 不平行，若 $\alpha\cdot\gamma=\beta\cdot\gamma=0$，证明 $\gamma=0$。
+\idea{共面意味着 $\gamma=s\alpha+t\beta$，与 $\gamma$ 自己做内积即可。}
+\[
+|\gamma|^2=\gamma\cdot(s\alpha+t\beta)
+=s(\gamma\cdot\alpha)+t(\gamma\cdot\beta)=0.
+\]
+向量模的平方为零当且仅当零向量。
+\ans{$\gamma=0$。原书未单列终值，此处独立证明。}
+
+\Q{9}{同时垂直三个不共面向量只能为零}
+\textbf{题意概述：}$\alpha,\beta,\gamma$ 不共面，$\delta$ 分别与它们正交，证明 $\delta=0$。
+\idea{三个不共面向量构成空间基；$\delta$ 可表示为三者线性组合。}
+设 $\delta=p\alpha+q\beta+r\gamma$，则
+\[
+|\delta|^2=\delta\cdot(p\alpha+q\beta+r\gamma)=0,
+\]
+因而 $\delta=0$。
+\ans{得证。更一般地，若向量分别与空间的一组基正交，它就必为零向量。}
+
+\Q{10}{三角形三中线平方和恒等式}
+\textbf{题意概述：}证明三角形三条中线长度平方之和为三边长度平方和的 $3/4$。
+\idea{以 $A$ 为原点，令 $b=\V{AB}$、$c=\V{AC}$，三条中线向量可写成 $\frac12(b+c)$、$\frac12c-b$、$\frac12b-c$。}
+展开得
+\begin{align*}
+4\sum m^2&=|b+c|^2+|c-2b|^2+|b-2c|^2\\
+&=6\bigl(|b|^2+|c|^2-b\cdot c\bigr).
+\end{align*}
+另一方面 $AB^2+AC^2+BC^2=|b|^2+|c|^2+|c-b|^2
+=2(|b|^2+|c|^2-b\cdot c)$。
+\ans{$\displaystyle m_a^2+m_b^2+m_c^2=\frac34(AB^2+BC^2+CA^2)$。}
+\tip{此公式也可由中线定理 $2(AB^2+AC^2)=4AM^2+BC^2$ 三次相加得到。}
+
+\Q{11}{内积恒等式：展开左侧验证}
+\textbf{题意概述：}证明
+\[
+(\alpha+\beta+\gamma)^2+\alpha^2-\beta^2-\gamma^2
+=2(\alpha+\beta)\cdot(\alpha+\gamma).
+\]
+\idea{把左边的平方按 $u^2=u\cdot u$ 展开，注意每对交叉项有系数 2。}
+\begin{align*}
+\text{左边}&=\alpha^2+\beta^2+\gamma^2
++2\alpha\cdot\beta+2\alpha\cdot\gamma+2\beta\cdot\gamma
++\alpha^2-\beta^2-\gamma^2\\
+&=2(\alpha^2+\alpha\cdot\beta+\alpha\cdot\gamma+\beta\cdot\gamma)\\
+&=2(\alpha+\beta)\cdot(\alpha+\gamma).
+\end{align*}
+\ans{恒等式对任意向量成立。}
+
+\Q{12}{四向量和为零时的三个充要关系}
+\textbf{题意概述：}若 $\alpha+\beta+\gamma+\delta=0$，证明题设的三组“长度平方和相等 $\Leftrightarrow$ 两组合向量垂直”。
+\idea{先消去 $\delta=-(\alpha+\beta+\gamma)$，利用内积展开，把等式两侧差写为 $-2$ 倍指定的内积。}
+逐项有
+\begin{align*}
+\alpha^2+\beta^2-\gamma^2-\delta^2
+&=-2(\alpha+\gamma)\cdot(\beta+\gamma),\\
+\alpha^2+\gamma^2-\beta^2-\delta^2
+&=-2(\alpha+\beta)\cdot(\beta+\gamma),\\
+\beta^2+\gamma^2-\alpha^2-\delta^2
+&=-2(\alpha+\beta)\cdot(\alpha+\gamma).
+\end{align*}
+每式左端为零恰好等价于右端的内积为零，得到书中三组双向推论。
+\ans{三个“当且仅当”都成立；不需要额外假设四个向量非零。}
+
+\Q{13}{四点向量的两条恒等式}
+\textbf{题意概述：}对任意四点 $A,B,C,D$，证明
+\[
+\V{AB}\cdot\V{CD}+\V{BC}\cdot\V{AD}+\V{CA}\cdot\V{BD}=0
+\]
+以及 $AB^2+CD^2=AC^2+BD^2\Leftrightarrow\V{AD}\cdot\V{BC}=0$。
+\idea{令 $x=\V{AB},y=\V{AC},z=\V{AD}$，所有有向线段用三个基向量差表示。}
+有 $\V{CD}=z-y,\V{BC}=y-x,\V{CA}=-y,\V{BD}=z-x$，于是
+\[
+x\cdot(z-y)+(y-x)\cdot z-y\cdot(z-x)=0.
+\]
+另一式左、右长度平方之差为
+\[
+|x|^2+|z-y|^2-|y|^2-|z-x|^2=-2z\cdot(y-x).
+\]
+\ans{第 (1) 式恒等于零；第 (2) 式等价于 $\V{AD}\perp\V{BC}$，两方向均得证。}
+
+\Q{14}{四面体的三对对棱正交及平方和}
+\textbf{题意概述：}四面体两对对棱互相垂直，证明第三对对棱也垂直，且三组对棱长度平方和相等。
+\idea{以一个顶点 $A$ 为原点，设 $x=\V{AB},y=\V{AC},z=\V{AD}$；不妨已知 $AB\perp CD$ 和 $AC\perp BD$。}
+由 $x\cdot(z-y)=0$、$y\cdot(z-x)=0$ 可得
+\[
+x\cdot z=x\cdot y=y\cdot z.
+\]
+所以 $z\cdot(y-x)=0$，即 $AD\perp BC$。进一步
+\begin{align*}
+AB^2+CD^2&=|x|^2+|z-y|^2,\\
+AC^2+BD^2&=|y|^2+|z-x|^2,\\
+AD^2+BC^2&=|z|^2+|y-x|^2,
+\end{align*}
+三式展开后都等于 $|x|^2+|y|^2+|z|^2-2(x\cdot y)$。
+\ans{第三对对棱正交，且 $AB^2+CD^2=AC^2+BD^2=AD^2+BC^2$。}

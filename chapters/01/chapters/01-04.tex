@@ -1,0 +1,145 @@
+\section{习题 1.4：向量的外积}\label{sec:14}
+\sectionlead{11}{39--40}{301--302}{外积结合面积和方向。先用右手系确定符号，随后使用 $\alpha\times\beta=-\beta\times\alpha$、双线性以及叉乘与内积的关系。}
+\begin{tcolorbox}[colback=white,colframe=rulegray,boxrule=0.4pt,arc=1.5mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
+\concepttitle{图形理解 1.4：外积同时编码“面积”和“方向”}
+\begin{center}
+\begin{tikzpicture}[scale=1.0,>=Stealth]
+\coordinate (O) at (0,0);
+\coordinate (A) at (3.4,0.6);
+\coordinate (B) at (1.2,2.5);
+\coordinate (C) at ($(A)+(B)$);
+\draw[->,thick,blue] (O)--(A) node[below right]{$\alpha$};
+\draw[->,thick,teal] (O)--(B) node[above left]{$\beta$};
+\draw[dashed] (A)--(C)--(B);
+\draw[thick,gray] (O)--(A)--(C)--(B)--cycle;
+\coordinate (N0) at (4.9,1.6);
+\coordinate (N1) at (6.3,2.9);
+\draw[->,very thick,red] (N0)--(N1) node[above right]{$\alpha\times\beta$};
+\node at (6.0,1.5) {方向由右手法则决定};
+\node at (6.05,0.8) {$|\alpha\times\beta|=S_{\text{平行四边形}}$};
+\fill (O) circle(1.4pt) node[below left]{$O$};
+\end{tikzpicture}
+\end{center}
+\figcaptiontxt{先判方向，再算大小。本节很多错都出在“把面积算对了，但符号和法向方向弄反了”。}
+\end{tcolorbox}
+
+\Q{1}{交换顺序与改变符号对定向的影响}
+\textbf{题意概述：}$\alpha,\beta,\gamma$ 是一组右手系，判断四组 $(-\alpha,-\gamma,\beta)$、$(\beta,-\alpha,\gamma)$、$(-\alpha,-\beta,-\gamma)$、$(-\beta,\gamma,-\alpha)$ 的定向。
+\idea{每交换两列，行列式改变一次符号；每将一个向量乘 $-1$，再改变一次符号。总乘积为正则右手，为负则左手。}
+\begin{center}\begin{tabular}{@{}lccc@{}}\toprule
+向量组 & 置换符号 & 负号个数 & 定向\\\midrule
+$(-\alpha,-\gamma,\beta)$ & $-$ & 2 & 左手\\
+$(\beta,-\alpha,\gamma)$ & $-$ & 1 & 右手\\
+$(-\alpha,-\beta,-\gamma)$ & $+$ & 3 & 左手\\
+$(-\beta,\gamma,-\alpha)$ & $+$ & 2 & 右手\\\bottomrule
+\end{tabular}\end{center}
+\ans{依次为左、右、左、右，与原书简答一致。}
+
+\Q{2}{用外积计算平行四边形面积}
+\textbf{题意概述：}平行四边形中 $A=(1,1,1)$、$B=(6,-1,2)$、$C=(5,1,7)$ 是连续顶点，求面积。
+\idea{面积等于相邻边外积的模；相邻边可取 $\V{AB}$ 与 $\V{BC}$，也可取 $\V{AB}$ 与 $\V{AC}$。}
+\[
+\V{AB}=(5,-2,1),\qquad \V{AC}=(4,0,6).
+\]
+\[
+\V{AB}\times\V{AC}=(-12,-26,8),
+\quad S=\sqrt{144+676+64}=\sqrt{884}=2\sqrt{221}.
+\]
+\ans{$S=2\sqrt{221}$，与原书一致。}
+\tip{三角形 $ABC$ 的面积应为 $\sqrt{221}$，平行四边形面积是它的两倍。}
+
+\Q{3}{三维向量组合的坐标外积}
+\textbf{题意概述：}右手直角系下 $\alpha=(1,0,-1)$、$\beta=(1,-2,0)$、$\gamma=(-1,2,1)$，计算 $(3\alpha+\beta-\gamma)\times(\alpha-\beta+\gamma)$。
+\idea{先分别求两个括号内的向量，再用叉乘行列式，减少展开错误。}
+\[
+u=3\alpha+\beta-\gamma=(5,-4,-4),\quad
+v=\alpha-\beta+\gamma=(-1,4,0).
+\]
+\[
+u\times v=\left((-4)\cdot0-(-4)\cdot4,\,
+(-4)(-1)-5\cdot0,\,5\cdot4-(-4)(-1)\right)
+=(16,4,16).
+\]
+\ans{$(16,4,16)$，与原书一致。}
+
+\Q{4}{拉格朗日恒等式}
+\textbf{题意概述：}证明 $|\alpha\times\beta|^2+(\alpha\cdot\beta)^2=|\alpha|^2|\beta|^2$。
+\idea{用夹角 $\theta$ 的定义，外积的模对应正弦，内积对应余弦。}
+\[
+|\alpha\times\beta|^2+(\alpha\cdot\beta)^2
+=|\alpha|^2|\beta|^2(\sin^2\theta+\cos^2\theta)
+=|\alpha|^2|\beta|^2.
+\]
+若有零向量，两边都为零，故无需另作非零假设。
+\ans{得证。它也是三维向量形式的二维勾股关系。}
+
+\Q{5}{三向量和为零时的两两外积相等}
+\textbf{题意概述：}若 $\alpha+\beta+\gamma=0$，证明 $\alpha\times\beta=\beta\times\gamma=\gamma\times\alpha$。
+\idea{直接用 $\gamma=-\alpha-\beta$ 代入。}
+\begin{align*}
+\beta\times\gamma&=\beta\times(-\alpha-\beta)
+=-\beta\times\alpha=\alpha\times\beta,\\
+\gamma\times\alpha&=(-\alpha-\beta)\times\alpha
+=-\beta\times\alpha=\alpha\times\beta.
+\end{align*}
+\ans{得证。对任意维度适合的三维向量都成立，不需要三者不共线。}
+
+\Q{6}{逆方向：共同外积非零为何重要}
+\textbf{题意概述：}说明三种两两外积相等不能直接推出 $\alpha+\beta+\gamma=0$，但若公共外积不为零，则可推出。
+\idea{先取三个相等的非零共线向量给反例；再令 $s=\alpha+\beta+\gamma$，证明 $s$ 与 $\alpha,\beta$ 都平行。}
+若 $\alpha=\beta=\gamma=(1,0,0)$，则三种外积均为零，而三向量和为 $(3,0,0)\neq0$。
+若公共外积 $w\neq0$，则
+\begin{align*}
+s\times\alpha&=\beta\times\alpha+\gamma\times\alpha=-w+w=0,\\
+s\times\beta&=\alpha\times\beta+\gamma\times\beta=w-w=0.
+\end{align*}
+因 $\alpha\times\beta=w\ne0$，$\alpha,\beta$ 不平行；同一向量 $s$ 同时平行于它们，只有 $s=0$。
+\ans{一般不能推出；在共同外积非零时能推出 $\alpha+\beta+\gamma=0$。}
+
+\Q{7}{平面直角坐标的三角形面积行列式}
+\textbf{题意概述：}$A=(x_1,y_1)$、$B=(x_2,y_2)$、$C=(x_3,y_3)$，证明三角形面积等于三阶行列式绝对值的一半。
+\idea{把平面嵌入 $z=0$；面积为 $|\V{AB}\times\V{AC}|/2$。}
+\[
+\V{AB}=(x_2-x_1,y_2-y_1,0),\quad
+\V{AC}=(x_3-x_1,y_3-y_1,0).
+\]
+其外积只有第三分量，值为
+\[
+(x_2-x_1)(y_3-y_1)-(y_2-y_1)(x_3-x_1)
+=\begin{vmatrix}x_1&y_1&1\\x_2&y_2&1\\x_3&y_3&1\end{vmatrix}.
+\]
+\ans{$\displaystyle S=\frac12\left|\begin{vmatrix}x_1&y_1&1\\x_2&y_2&1\\x_3&y_3&1\end{vmatrix}\right|$。}
+
+\Q{8}{沿同一向量的外积相同，原向量未必相同}
+\textbf{题意概述：}给定 $\gamma\ne0$，若 $\alpha\times\gamma=\beta\times\gamma$，能否推出 $\alpha=\beta$？
+\idea{只得到 $(\alpha-\beta)\times\gamma=0$，即差向量平行 $\gamma$，未必是零。}
+例如 $\gamma=(1,0,0),\alpha=(1,0,0),\beta=(0,0,0)$，两边外积同为零，但 $\alpha\ne\beta$。
+\ans{不能，与原书一致。正确结论是 $\alpha-\beta=t\gamma$。}
+
+\Q{9}{同一方向的内积与外积同时相等}
+\textbf{题意概述：}在 $\gamma\ne0$ 的条件下，若 $\alpha\cdot\gamma=\beta\cdot\gamma$ 且 $\alpha\times\gamma=\beta\times\gamma$，问是否能推出 $\alpha=\beta$。
+\idea{令 $d=\alpha-\beta$，则 $d\cdot\gamma=0$ 且 $d\times\gamma=0$，前者垂直，后者平行。}
+从 $d\times\gamma=0$、$\gamma\ne0$ 可写 $d=t\gamma$；代入 $d\cdot\gamma=0$ 得 $t|\gamma|^2=0$，所以 $t=0$。
+\ans{能推出 $\alpha=\beta$，与书后答案一致。}
+
+\Q{10}{一条垂直条件加一条平行条件}
+\textbf{题意概述：}$\alpha,\beta\ne0$；若 $\alpha\cdot\gamma=0$、$\beta\times\gamma=0$，什么时候一定能推出 $\gamma=0$？
+\idea{外积为零意味着 $\gamma=t\beta$；内积条件变成 $t(\alpha\cdot\beta)=0$。}
+若 $\alpha\cdot\beta\ne0$（即两向量\textbf{不垂直}），则 $t=0$。如果 $\alpha\perp\beta$，可直接取 $\gamma=\beta\ne0$，两条件依然成立。
+\ans{原命题一般不能成立；添加条件 $\alpha\cdot\beta\ne0$ 后成立。与书后提示一致。}
+
+\Q{11}{三个两两成 60 度的向量的叉积方向角}
+\textbf{题意概述：}$\alpha,\beta,\gamma$ 不共面且为右手系，三者两两夹角均为 $60^\circ$，求 $\angle(\alpha\times\beta,\gamma)$。
+\idea{夹角的余弦是混合积除以 $|\alpha\times\beta||\gamma|$；由三者的 Gram 行列式计算混合积模。}
+把三向量单位化，Gram 矩阵为
+\[
+G=\begin{pmatrix}1&1/2&1/2\\1/2&1&1/2\\1/2&1/2&1\end{pmatrix},\qquad \det G=\frac12.
+\]
+右手定向说明混合积为正，因此
+\[
+(\alpha,\beta,\gamma)=\frac{|\alpha||\beta||\gamma|}{\sqrt2},\qquad
+|\alpha\times\beta|=\frac{\sqrt3}{2}|\alpha||\beta|.
+\]
+于是 $\cos\theta=\sqrt{2/3}$、$\sin\theta=1/\sqrt3$，且 $\theta\in(0,\pi/2)$。
+\ans{$\displaystyle\theta=\arcsin\frac{\sqrt3}{3}=\arccos\sqrt{\frac23}$，与原书提示一致。}
+\tip{本题问的是\textbf{夹角}，不是混合积的数值；右手系保证取锐角而非补角。}

@@ -1,0 +1,142 @@
+\section{习题 1.2：仿射坐标系}\label{sec:12}
+\sectionlead{10}{25--26}{301}{先选原点和基向量，再用中点、分点的仿射组合求系数。与直角坐标不同，仿射坐标不默认单位长度或相互垂直。}
+\begin{tcolorbox}[colback=white,colframe=rulegray,boxrule=0.4pt,arc=1.5mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
+\concepttitle{图形理解 1.2：仿射坐标 = “用斜着的基向量拼点”}
+\begin{center}
+\begin{tikzpicture}[scale=1.0,>=Stealth]
+\coordinate (O) at (0,0);
+\coordinate (E1) at (3.8,0.4);
+\coordinate (E2) at (1.3,2.6);
+\coordinate (P) at ($(O)!0.65!(E1)+(O)!0.55!(E2)$);
+\draw[->,thick] (O)--(E1) node[below right]{$\mathbf e_1$};
+\draw[->,thick] (O)--(E2) node[above left]{$\mathbf e_2$};
+\draw[dashed] (P)--($(O)!0.65!(E1)$);
+\draw[dashed] (P)--($(O)!0.55!(E2)$);
+\draw[dashed] ($(O)!0.65!(E1)$)--($(O)!0.65!(E1)+(O)!0.55!(E2)$);
+\draw[dashed] ($(O)!0.55!(E2)$)--($(O)!0.65!(E1)+(O)!0.55!(E2)$);
+\draw[blue,->,very thick] (O)--(P) node[midway,right]{$\overrightarrow{OP}$};
+\fill (O) circle(1.5pt) node[below left]{$O$};
+\fill (P) circle(1.5pt) node[above right]{$P(x,y)$};
+\node at (5.6,2.2) {$\overrightarrow{OP}=x\mathbf e_1+y\mathbf e_2$};
+\node at (5.5,1.5) {这里的坐标轴可以\textbf{不垂直、不同长}};
+\end{tikzpicture}
+\end{center}
+\figcaptiontxt{仿射坐标不看角度和长度单位，主要看“平行关系 + 线性组合”。所以本节大量题目都能靠中点、分点、平行四边形法则来做。}
+\end{tcolorbox}
+
+\Q{1}{平行四边形对角线上的分点}
+\textbf{题意概述：}平行四边形 $ABCD$，$P\in BD$、$Q\in AC$；$(B,D,P)=4$、$(A,C,Q)=5$。在 $[A;\V{AB},\V{AD}]$ 中求 $P,Q,\V{PQ}$。
+\idea{先写 $A=(0,0)$、$B=(1,0)$、$D=(0,1)$、$C=(1,1)$；有向分比 $\lambda$ 对应 $X=(U+\lambda V)/(1+\lambda)$。}
+\begin{align*}
+P&=\frac{B+4D}{5}=\left(\frac15,\frac45\right),\\
+Q&=\frac{A+5C}{6}=\left(\frac56,\frac56\right),\\
+\V{PQ}&=Q-P=\left(\frac{19}{30},\frac1{30}\right).
+\end{align*}
+\ans{$P=(1/5,4/5)$、$Q=(5/6,5/6)$，$\V{PQ}=(19/30,1/30)$，与原书简答一致。}
+\tip{只需坐标相减，不用测量图上的线段；书后列 $Q$ 在 $P$ 前面，不代表坐标求解顺序。}
+
+\Q{2}{以两个中点向量作斜基}
+\textbf{题意概述：}$E,F$ 分别是平行四边形的 $BC,CD$ 中点，在 $[A;\V{AE},\V{AF}]$ 中写出 $B,D,C$。
+\idea{让 $u=\V{AB}$、$v=\V{AD}$，将两条新基向量表示成旧基，再反解。}
+\[
+e=\V{AE}=u+\frac12v,\qquad f=\V{AF}=\frac12u+v.
+\]
+解二元线性方程得到
+\[
+u=\frac43e-\frac23f,\qquad v=-\frac23e+\frac43f.
+\]
+又 $\V{AC}=u+v=\tfrac23e+\tfrac23f$。
+\ans{$\displaystyle B=(\tfrac43,-\tfrac23),\ D=(-\tfrac23,\tfrac43),\ C=(\tfrac23,\tfrac23)$。与书后答案一致。}
+\tip{这里的两个坐标轴一般既不垂直，也不是单位向量；中点关系保持有效。}
+
+\Q{3}{梯形：起点和新基的位置不必重合}
+\textbf{题意概述：}梯形 $\V{AB}=3\V{DC}$，$E$ 为 $BC$ 中点，$F$ 为 $CD$ 中点；在 $[C;\V{AE},\V{AF}]$ 求 $A,B,D$ 的坐标。
+\idea{先用 $u=\V{AB}$、$v=\V{AD}$，并注意新坐标的原点是 $C$ 而不是 $A$。}
+取 $A=0$，则 $B=u$、$D=v$、$C=v+u/3$，所以
+\[
+e=\V{AE}=\frac23u+\frac12v,\qquad
+f=\V{AF}=\frac16u+v.
+\]
+若 $X-C=xu+yv$，设它在新基中为 $se+tf$，则
+\[
+\begin{pmatrix}s\\t\end{pmatrix}
+=\begin{pmatrix}\tfrac{12}{7}&-\tfrac67\\-\tfrac27&\tfrac87\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}.
+\]
+分别代入 $A-C=-u/3-v$、$B-C=2u/3-v$、$D-C=-u/3$。
+\ans{$\displaystyle A=(-\tfrac27,-\tfrac67),\ B=(\tfrac{10}7,-\tfrac{12}7),\ D=(-\tfrac47,\tfrac27)$，与原书一致。}
+\tip{同一向量的分解系数不受坐标原点影响，但\textbf{点的坐标}会随原点平移变化。}
+
+\Q{4}{正六边形的两组仿射基变换}
+\textbf{题意概述：}正六边形顶点依次为 $A,B,C,D,E,F$。先在 $[A;\V{AB},\V{AF}]$ 中求六顶点，再在 $[A;\V{AC},\V{AE}]$ 中求 $\V{AB},\V{AF}$。
+\idea{平移和六边形对边平行，可先取 $u=\V{AB}, v=\V{AF}$，沿边依次累加。}
+\[
+A=(0,0),\ B=(1,0),\ C=(2,1),\ D=(2,2),\ E=(1,2),\ F=(0,1).
+\]
+第二组基向量为 $\V{AC}=2u+v$、$\V{AE}=u+2v$，联立反解
+\[
+u=\frac23\V{AC}-\frac13\V{AE},\qquad
+v=-\frac13\V{AC}+\frac23\V{AE}.
+\]
+\ans{六个点的坐标如上；$\V{AB}=(\tfrac23,-\tfrac13)$、$\V{AF}=(-\tfrac13,\tfrac23)$。书后答案一致。}
+\tip{正六边形的度量性质保证边相等，但此题仿射坐标运算主要依靠平行和长度比，不用三角函数。}
+
+\Q{5}{平行六面体体对角线与截面}
+\textbf{题意概述：}从顶点 $A$ 引出的三条棱 $AB,AC,AD$ 为一组基。体对角线从 $A$ 出发，与经过 $B,C,D$ 的平面交于 $N$。
+\idea{在 $[A;\V{AB},\V{AC},\V{AD}]$ 中，$B,C,D$ 是三个单位坐标点，截面方程立即写出。}
+过 $B=(1,0,0),C=(0,1,0),D=(0,0,1)$ 的平面为 $x+y+z=1$。与 $A$ 相对的顶点 $T=(1,1,1)$，所以 $AT$ 可写为 $(t,t,t)$；代入得 $3t=1$。
+\ans{$N=(1/3,1/3,1/3)$，与原书一致。}
+\tip{注意不是体对角线中点 $(1/2,1/2,1/2)$：截面平面靠近 $A$，交点处于体对角线的三分之一处。}
+
+\Q{6}{从有向分比倒求未知端点}
+\textbf{题意概述：}点 $A=(3,7,3)$、$C=(8,2,3)$，$A,B,C$ 共线且 $(A,B,C)=5/2$；求 $B$。
+\idea{保留分比次序：这里 $C$ 才是分点，$B$ 是待求的第二端点。}
+\[
+C=\frac{A+\lambda B}{1+\lambda},\qquad \lambda=\frac52
+\quad\Longrightarrow\quad B=\frac{(1+\lambda)C-A}{\lambda}.
+\]
+各分量分别运算，得到
+\[
+B=\frac{\tfrac72(8,2,3)-(3,7,3)}{\tfrac52}=(10,0,3).
+\]
+\ans{$B=(10,0,3)$，与书后答案一致。}
+\tip{将 $A,B,C$ 的第 3 坐标都设为 3，是很快的合理性检验。}
+
+\Q{7}{共面向量的行列式判据}
+\textbf{题意概述：}空间仿射基中，$\alpha=(x_1,y_1,z_1)$、$\beta=(x_2,y_2,z_2)$、$\gamma=(x_3,y_3,z_3)$ 共面，证明三阶坐标行列式为零。
+\idea{共面意味着三向量线性相关。向量组线性相关，当且仅当行列式为零。}
+若 $\alpha,\beta$ 不平行，则 $\gamma=s\alpha+t\beta$；把这一式视作第三行与前两行的组合，行列式为零。若 $\alpha,\beta$ 已经相关，前两行相关，行列式仍为零。因此
+\[
+\boxed{\begin{vmatrix}x_1&y_1&z_1\\x_2&y_2&z_2\\x_3&y_3&z_3\end{vmatrix}=0}.
+\]
+\ans{证明成立；原书未单列这一证明题的答案。}
+\tip{逆命题对\textbf{三个向量}同样成立：行列式为零 $\Leftrightarrow$ 线性相关 $\Leftrightarrow$ 共面。}
+
+\Q{8}{三点共线的必要行列式条件}
+\textbf{题意概述：}若仿射坐标为 $A=(x_1,y_1,z_1)$、$B=(x_2,y_2,z_2)$、$C=(x_3,y_3,z_3)$ 的三点共线，证明其坐标行列式为零。
+\idea{点 $A,B,C$ 共线，存在 $t$ 使 $C=(1-t)A+tB$；这等式是在固定原点下对点坐标的仿射线性组合。}
+因为第三行是前两行的线性组合，立即有
+\[
+\det\begin{pmatrix}x_1&y_1&z_1\\x_2&y_2&z_2\\x_3&y_3&z_3\end{pmatrix}=0.
+\]
+\ans{得证。更精确的共线判据是 $\V{AB}\times\V{AC}=0$，而这里的三阶行列式只给出一个必要条件。}
+
+\Q{9}{第 8 题的逆命题不成立}
+\textbf{题意概述：}问三个点的三阶坐标行列式为零是否能推出三点共线。
+\idea{要否定逆命题，构造三个不共线点，但其位置向量同在过原点的平面中。}
+取 $A=(1,0,0)$、$B=(0,1,0)$、$C=(0,0,0)$。三个坐标行组成的矩阵第三行为零，行列式显然为零；但是 $\V{CA}=(1,0,0)$ 与 $\V{CB}=(0,1,0)$ 不平行，所以三点\textbf{不共线}。
+\ans{逆命题不成立。原书未列此题单独结果。}
+\tip{行列式为零只说明位置向量 $\V{OA},\V{OB},\V{OC}$ 线性相关，不能把它和点的仿射共线直接等同。}
+
+\Q{10}{三个共线点的未知坐标与有向分比}
+\textbf{题意概述：}$A=(3,4,1)$、$B=(2,5,0)$、$C=(a,1,b)$ 共线，求 $a,b$ 与 $(A,B,C)$。
+\idea{先用直线参数 $C=A+t(B-A)$，再由给定的第二坐标求 $t$。}
+\[
+C=(3,4,1)+t(-1,1,-1)=(3-t,4+t,1-t).
+\]
+从 $4+t=1$ 得 $t=-3$，从而 $a=6,b=4$。有向分比
+\[
+(A,B,C)=\frac t{1-t}=\frac{-3}{4}.
+\]
+\ans{$a=6,b=4,(A,B,C)=-3/4$，与书后答案一致。}
+\tip{分比为负，说明 $C$ 在边 $AB$ 的延长线（$A$ 的外侧）。}

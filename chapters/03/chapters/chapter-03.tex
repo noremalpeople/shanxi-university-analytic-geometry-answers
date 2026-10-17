@@ -1,0 +1,121 @@
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,11pt,fontset=none]{ctexart}
+\usepackage[margin=22mm,top=20mm,bottom=22mm,headsep=8mm,headheight=15pt]{geometry}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setmainfont{Liberation Serif}
+\usepackage{amsmath,amssymb,mathtools,bm,amsthm}
+\usepackage{booktabs,tabularx,longtable,graphicx,multicol}
+\usepackage{xcolor,tikz,tcolorbox,needspace,enumitem}
+\usepackage{fancyhdr,lastpage,hyperref,titlesec}
+\usetikzlibrary{arrows.meta,calc,positioning,angles,quotes,decorations.markings}
+\definecolor{ink}{HTML}{183D58}
+\definecolor{accent}{HTML}{256D98}
+\definecolor{mint}{HTML}{186C61}
+\definecolor{pale}{HTML}{EEF5F8}
+\definecolor{warn}{HTML}{A35A13}
+\definecolor{warm}{HTML}{FFF6E9}
+\definecolor{edge}{HTML}{D6E4EB}
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,pdftitle={空间解析几何 第三章：坐标变换与二次曲线的分类（63题图解与逐题核查）},pdfauthor={Original verified study notes}}
+\newcommand{\pt}[1]{\boldsymbol{#1}}
+\newcommand{\ans}[1]{\par\smallskip\noindent\textcolor{mint}{\sffamily\bfseries 核查结论：}\,#1\par}
+\newcommand{\hint}[1]{\par\noindent\textcolor{ink}{\sffamily\bfseries 解题思路：}\,#1\par}
+\newcommand{\caution}[1]{\begin{tcolorbox}[colback=warm,colframe=warn,boxrule=0.5pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm]\textcolor{warn}{\sffamily\bfseries 注意／勘误}\quad #1\end{tcolorbox}}
+\newcommand{\readtip}[1]{\begin{tcolorbox}[colback=pale,colframe=edge,boxrule=0.4pt,arc=1.5mm,left=3mm,right=3mm,top=2mm,bottom=2mm]#1\end{tcolorbox}}
+\newcommand{\Q}[2]{\par\Needspace{8\baselineskip}\phantomsection\addcontentsline{toc}{subsection}{#1题\quad #2}\subsection*{第 #1 题\quad #2}\vspace{-1.6mm}}
+\newcommand{\subpart}[1]{\par\smallskip\noindent\textbf{#1}\quad}
+\newcommand{\K}[1]{\par\noindent\textcolor{ink}{\bfseries 知识点：}#1\par}
+\newcommand{\chr}[4]{\par\noindent\begin{tcolorbox}[colback=pale,colframe=edge,boxrule=0.45pt,left=3mm,right=3mm,top=2mm,bottom=2mm,arc=1.4mm]\textbf{本节 #1 题}\quad 题源纸质页 #2，PDF 页 #3；答案纸质页 #4。\end{tcolorbox}}
+\titleformat{\section}{\Large\sffamily\bfseries\color{ink}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\sffamily\bfseries\color{ink}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{15pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{5pt}
+\setlength{\parindent}{1.5em}\setlength{\parskip}{4pt}
+\setlist[enumerate]{leftmargin=2em,itemsep=1pt,topsep=4pt}
+\allowdisplaybreaks[1]
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\textcolor{ink}{\footnotesize 空间解析几何 · 独立核查讲义}}
+\fancyhead[R]{\textcolor{ink}{\footnotesize 第三章 / 坐标变换与二次曲线}}
+\fancyfoot[L]{\textcolor{gray}{\footnotesize v3.0 · 2026-10-17}}
+\fancyfoot[R]{\textcolor{gray}{\footnotesize \thepage / \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\Mtwo}[3]{\begin{pmatrix}#1&#2\\#2&#3\end{pmatrix}}
+\newcommand{\C}{\mathbb C}
+\begin{document}
+\thispagestyle{empty}
+\vspace*{19mm}
+{\sffamily\large\color{mint}\bfseries ORIGINAL · VERIFIED · ILLUSTRATED}\par
+\vspace{8mm}
+{\sffamily\fontsize{29}{38}\selectfont\bfseries\color{ink} 第三章}\par
+\vspace{1mm}
+{\sffamily\fontsize{22}{31}\selectfont\color{accent} 坐标变换与二次曲线的分类}\par
+\vspace{13mm}
+\begin{tcolorbox}[colback=pale,colframe=edge,boxrule=0.6pt,arc=2mm,left=6mm,right=6mm,top=5mm,bottom=5mm]
+\Large\bfseries\color{ink} 63 道编号题 · 全部 3.1—3.5 \par\bigskip
+\normalsize\normalfont\color{black}
+\textbf{包括小问：}坐标变换、正交旋转、二次曲线分类、不变量、中心和渐近线、切线、对称轴及参数曲线。每题标出关键知识、计算过程与核查结论；有争议的原书答案单独记录，绝不悄悄改写。
+\begin{itemize}
+\item 习题 3.1：16 题（空间与平面坐标变换）
+\item 习题 3.2：11 题（二次曲线的类型和性质）
+\item 习题 3.3：7 题（$I_1,I_2,I_3,K_1$ 不变量判别）
+\item 习题 3.4：24 题（仿射特征；第 1 题含 10 小问）
+\item 习题 3.5：5 题（度量特征、对称轴、曲线标准化）
+\end{itemize}
+\end{tcolorbox}
+\vfill
+\noindent\textbf{主要图形：}正交轴变换、椭圆／双曲线／抛物线、中心与共轭直径、渐近线、切线与极线、旋转后主轴。\par\medskip
+\noindent{\small 题目参考用户上传《空间解析几何》扫描 PDF（第三章纸质页 122—174；习题页 134—136、141—142、153、163—166、173—174；书后答案页 302—307）。\par
+本讲义为独立学习解析而非原书复刻或官方勘误。图形为学习示意图，涉及带方向和参数的题请以严格推导为准。}
+\clearpage
+\tableofcontents
+\clearpage
+\section*{本章统一记号与判别流程}\addcontentsline{toc}{section}{本章统一记号与判别流程}
+本书研究的平面二次式统一记为
+\[
+F(x,y)=a_{11}x^2+2a_{12}xy+a_{22}y^2+2b_1x+2b_2y+c.
+\]
+\[
+A=\begin{pmatrix}a_{11}&a_{12}\\a_{12}&a_{22}\end{pmatrix},\quad
+b=\begin{pmatrix}b_1\\b_2\end{pmatrix},\quad
+H=\begin{pmatrix}a_{11}&a_{12}&b_1\\a_{12}&a_{22}&b_2\\b_1&b_2&c\end{pmatrix}.
+\]
+\[
+I_1=\operatorname{tr}A,\qquad I_2=\det A,\qquad I_3=\det H,
+\qquad K_1\ (\text{当 }I_2=0\text{ 时辅助判别}).
+\]
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,>=Stealth,every node/.style={font=\small}, action/.style={draw=edge,fill=pale,rounded corners=2mm,align=center,inner sep=5pt},link/.style={-Stealth,thick}]
+\node[action] (start) {$F=0$：写出对称矩阵 $A$};
+\node[action,below=of start] (det) {计算 $I_2=\det A$};
+\node[action,below left=11mm and 19mm of det] (non) {$I_2\neq0$\\ 有唯一中心 $-A^{-1}b$};
+\node[action,below right=11mm and 19mm of det] (zero) {$I_2=0$\\ 无心型或退化曲线};
+\node[action,below=of non] (types) {$I_2<0$ 双曲线族\\$I_2>0$ 椭圆族\\ 再用 $I_3,I_1$ 判断实/虚};
+\node[action,below=of zero] (par) {$I_3\neq0$ 真抛物线\\$I_3=0$ 再判直线、平行线等};
+\draw[link](start)--(det);
+\draw[link](det)--node[above left]{$\neq0$}(non);
+\draw[link](det)--node[above right]{$=0$}(zero);
+\draw[link](non)--(types);\draw[link](zero)--(par);
+\end{tikzpicture}
+\end{center}
+\readtip{\textbf{先问坐标系：}仿射换基可改变一般长度和角度，却不改变点是否共线、是否有中心、是否渐近。正交换基保持长度和直角，才能直接谈“长短半轴、焦距、互相垂直的切线”。\textbf{书后简答的空白}不代表题目不必证明：正文均给出独立推导。}
+\clearpage
+\input{chapters/03-01.tex}
+\clearpage
+\input{chapters/03-02.tex}
+\clearpage
+\input{chapters/03-03.tex}
+\clearpage
+\input{chapters/03-04.tex}
+\clearpage
+\input{chapters/03-05.tex}
+\clearpage
+\section*{全章复核总结}\addcontentsline{toc}{section}{全章复核总结}
+\begin{enumerate}
+\item \textbf{3.1：}换基时始终写旧坐标列向量 $X=CX'+d$；当两坐标系方向和比例不明确时，补充约束才能唯一确定。旋转坐标系与旋转图形的矩阵互为转置。
+\item \textbf{3.2—3.3：}圆锥曲线“实/虚/退化”要用常数项和判别式进一步区分，不能见到 $I_2>0$ 就说一定是实椭圆；$I_2=0$ 且 $I_3=0$ 的情况不可武断地称抛物线。
+\item \textbf{3.4：}中心 $Ah=-b$；渐近方向解 $u^\top Au=0$；点上切线取 $\nabla F(P)\cdot(X-P)=0$；外点切线须检验判别式和切点是否为实点。
+\item \textbf{3.5：}轴方向由 $A$ 的特征向量给出；对称轴还须穿过中心（有心曲线），或经过适当的顶点（无心抛物线）。
+\item \textbf{书后答案核验：}不按视觉猜测印刷符号，遇到可疑结果先代入原题，再用符号运算双重检查；详见项目 \texttt{AUDIT.md}。本 PDF 给出的数学结果是独立核查稿，不声称构成出版社官方勘误。
+\end{enumerate}
+\readtip{\textbf{建议写题流程：}第一遍遮住“核查结论”，先按“思路”列出矩阵或方程；第二遍对照推导检查数字、符号和零行列式等特殊情况；第三遍自行画出中心、主轴、渐近线、切线的位置。}
+\end{document}
