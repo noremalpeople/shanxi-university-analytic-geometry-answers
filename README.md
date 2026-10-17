@@ -1,6 +1,6 @@
 # 山西大学解析几何答案
 
-本仓库用于整理山西大学解析几何课程的章节答案资料，当前收录第一章和第二章 PDF。资料适合课后复习、核对计算过程、整理错题以及考前回顾使用。
+本仓库用于整理山西大学解析几何课程的章节答案资料，当前收录第一章至第三章 PDF。资料适合课后复习、核对计算过程、整理错题以及考前回顾使用。
 
 ## 资料内容
 
@@ -22,6 +22,12 @@
 该文件对应课程第二章的答案资料。使用时可以按照“先做题、后对答案、再整理错题”的顺序复习，并重点记录自己在概念理解、方程变形、几何关系判断和计算细节方面出现的问题。
 
 > 当前仓库按章节提供 PDF 答案，具体题目、编号、符号约定和解答内容以对应文件为准。
+
+### 第三章
+
+[解析几何第三章答案山西大学.pdf.pdf](./解析几何第三章答案山西大学.pdf.pdf)
+
+该文件对应课程第三章的答案资料。建议先根据课堂笔记和教材完成章节习题，再对照 PDF 检查推导、计算和结论，并将有疑问的题目整理到错题笔记中。
 
 ## 推荐使用方法
 
@@ -48,10 +54,11 @@
 | --- | --- |
 | `解析几何第一章答案山西大学.pdf` | 解析几何第一章答案资料 |
 | `解析几何第二章答案山西大学.pdf` | 解析几何第二章答案资料 |
+| `解析几何第三章答案山西大学.pdf.pdf` | 解析几何第三章答案资料 |
 
 ## English
 
-This repository collects chapter-based answer materials for the Analytic Geometry course at Shanxi University. It currently includes answer PDFs for Chapters 1 and 2.
+This repository collects chapter-based answer materials for the Analytic Geometry course at Shanxi University. It currently includes answer PDFs for Chapters 1 through 3.
 
 The files are intended for reviewing solution methods, checking calculations, organizing mistakes, and preparing for examinations. Students are encouraged to solve problems independently before consulting the answers.
 
