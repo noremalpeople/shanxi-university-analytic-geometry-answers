@@ -1,16 +1,60 @@
-# Shanxi University Analytic Geometry Answers
+# 山西大学解析几何答案
 
-山西大学解析几何课程答案资料。
+本仓库用于整理山西大学解析几何课程的章节答案资料，当前收录第一章和第二章 PDF。资料适合课后复习、核对计算过程、整理错题以及考前回顾使用。
 
-## Contents
+## 资料内容
 
-- [Chapter 1 Answers](./解析几何第一章答案山西大学.pdf)
-- [Chapter 2 Answers](./解析几何第二章答案山西大学.pdf)
+### 第一章
+
+[解析几何第一章答案山西大学.pdf](./解析几何第一章答案山西大学.pdf)
+
+该文件对应课程第一章的答案资料。建议先独立完成课后习题，再使用答案检查：
+
+- 题目的建模思路是否正确；
+- 公式、定义和定理的使用条件是否满足；
+- 坐标计算、代数化简和最终结论是否准确；
+- 解答过程是否完整，而不是只看最后结果。
+
+### 第二章
+
+[解析几何第二章答案山西大学.pdf](./解析几何第二章答案山西大学.pdf)
+
+该文件对应课程第二章的答案资料。使用时可以按照“先做题、后对答案、再整理错题”的顺序复习，并重点记录自己在概念理解、方程变形、几何关系判断和计算细节方面出现的问题。
+
+> 当前仓库按章节提供 PDF 答案，具体题目、编号、符号约定和解答内容以对应文件为准。
+
+## 推荐使用方法
+
+1. **先独立完成题目**：尽量不提前查看答案，先写出已知条件、所求目标和基本思路。
+2. **分步骤核对**：不要只比较最终答案，应逐步检查公式选择、推导过程和计算结果。
+3. **标记差异**：对不会做、思路不同或计算出错的题目做好标记，注明错误原因。
+4. **回到教材复习**：如果问题来自定义、定理或方法不熟悉，应先复习相关知识，再重新完成题目。
+5. **整理可复用方法**：将典型题型、常用公式和容易出错的步骤整理成个人笔记。
+
+## 适用范围
+
+本仓库主要面向：
+
+- 山西大学解析几何课程的课后学习；
+- 章节知识点复习与习题核对；
+- 错题整理和阶段性自测；
+- 考试前对已学章节进行快速回顾。
+
+答案资料用于辅助学习，不能替代教材、课堂讲解或独立思考。不同教材版本、教师授课顺序和题目编号可能存在差异，使用时请结合自己的课程材料进行核对。
+
+## 文件说明
+
+| 文件 | 内容 |
+| --- | --- |
+| `解析几何第一章答案山西大学.pdf` | 解析几何第一章答案资料 |
+| `解析几何第二章答案山西大学.pdf` | 解析几何第二章答案资料 |
 
 ## English
 
-This repository contains answer materials for the Analytic Geometry course at Shanxi University.
+This repository collects chapter-based answer materials for the Analytic Geometry course at Shanxi University. It currently includes answer PDFs for Chapters 1 and 2.
 
-## Disclaimer
+The files are intended for reviewing solution methods, checking calculations, organizing mistakes, and preparing for examinations. Students are encouraged to solve problems independently before consulting the answers.
 
-These materials are provided for personal study and reference. Please follow your course requirements and use them responsibly.
+## 声明
+
+本仓库内容仅供个人学习和复习参考。请遵守学校和课程的相关要求，合理使用答案资料，不将答案替代独立完成作业或考试。
